@@ -1,0 +1,359 @@
+Code	Category	Text	Full text	Compact
+-1		No selection	No selection	No
+1	Superficial	"Head / Neck, ins."	"Superficial: Head/Neck, ins."	Head/Neck ins.
+2	Superficial	"Head/Neck, mult.lok."	"Superficial: Head/Neck, mult.lok."	Head/Neck mult
+3	Superficial	"Face, ins."	"Superficial: Face, ins."	Face ins.
+4	Superficial	"Face, mult. lok."	"Superficial: Face, mult. lok."	Face mult.
+5	Superficial	Scalp	Superficial: Scalp	Scalp
+6	Superficial	Pan	Superficial: Pan	Pan
+7	Superficial	"Temple, v.s."	"Superficial: Temple, v.s."	Temple ve
+8	Superficial	"Temple, h.s."	"Superficial: Temple, h.s."	Temple hø
+9	Superficial	"Eyelids, upper v.s."	"Superficial: Eyelids, upper v.s."	V.Eyelids upper
+10	Superficial	"Eyelids, upper h.s."	"Superficial: Eyelids, upper h.s."	H.Eyelids upper
+11	Superficial	"Eyelids, lower v.s."	"Superficial: Eyelids, lower v.s."	V.Eyelids lower
+12	Superficial	"Eyelids, lower h.s."	"Superficial: Eyelids, lower h.s."	H.Eyelids lower
+13	Superficial	"Eye, near v.s."	"Superficial: Eye, near v.s."	Eye near ve
+14	Superficial	"Eye, near h.s."	"Superficial: Eye, near h.s."	Eye near hø
+15	Superficial	"Eyes, between"	"Superficial: Eyes, between"	"Eyes, between"
+16	Superficial	Nose	Superficial: Nose	Nose
+17	Superficial	"Ear, v.s."	"Superficial: Ear, v.s."	Ear ve
+18	Superficial	"Ear, h.s."	"Superficial: Ear, h.s."	Ear hø
+19	Superficial	"Cheek, v.s."	"Superficial: Cheek, v.s."	Cheek ve
+20	Superficial	"Cheek, h.s."	"Superficial: Cheek, h.s."	Cheek hø
+21	Superficial	"Mandible.,v.s."	"Superficial: Mandible.,v.s."	V.Mandibula
+22	Superficial	"Mandible.,h.s."	"Superficial: Mandible.,h.s."	H.Mandibula
+23	Superficial	Chin	Superficial: Chin	Chin
+24	Superficial	Throat	Superficial: Throat	Throat
+25	Superficial	"Throat, v.s."	"Superficial: Throat, v.s."	Throat ve
+26	Superficial	"Throat, h.s."	"Superficial: Throat, h.s."	Throat hø
+27	Superficial	"Neck, v.s."	"Superficial: Neck, v.s."	Neck ve
+28	Superficial	"Neck, h.s."	"Superficial: Neck, h.s."	Neck hø
+29	Superficial	Neck	Superficial: Neck	Neck
+30	Superficial	"Upper body, ins."	"Superficial: Upper body, ins."	Upper body ins.
+31	Superficial	"Upper body, mult.lok."	"Superficial: Upper body, mult.lok."	Upper body mult
+32	Superficial	"Supraclav, h.s."	"Superficial: Supraclav, h.s."	Supraclav hø
+33	Superficial	"Supraclav, v.s."	"Superficial: Supraclav, v.s."	Supraclav ve
+34	Superficial	"Thorax, med. foran"	"Superficial: Thorax, med. foran"	Thorax foran
+35	Superficial	"Thorax, v.s. foran"	"Superficial: Thorax, v.s. foran"	Thorax ve for.
+36	Superficial	"Thorax, h.s. foran"	"Superficial: Thorax, h.s. foran"	Thorax hø for.
+37	Superficial	"Thorax, v.s. bak"	"Superficial: Thorax, v.s. bak"	Thorax ve bak
+38	Superficial	"Thorax, h.s. bak"	"Superficial: Thorax, h.s. bak"	Thorax hø bak
+39	Superficial	"Thorax, med. bak"	"Superficial: Thorax, med. bak"	Thorax bak
+40	Superficial	"Thorax, h. side"	"Superficial: Thorax, h. side"	Thorax h. side
+41	Superficial	"Thorax, v. side"	"Superficial: Thorax, v. side"	Thorax v. side
+42	Superficial	"Axille, h.s."	"Superficial: Axille, h.s."	Axille hø
+43	Superficial	"Axille, v.s."	"Superficial: Axille, v.s."	Axille ve
+44	Superficial	"Shoulder, h.s."	"Superficial: Shoulder, h.s."	Shoulder hø
+45	Superficial	"Shoulder, v.s."	"Superficial: Shoulder, v.s."	Shoulder ve
+46	Superficial	"Upper limb., ins. h.s."	"Superficial: Upper limb., ins. h.s."	H.Upper limb.
+47	Superficial	"Upper limb., ins. v.s."	"Superficial: Upper limb., ins. v.s."	V.Upper limb.
+48	Superficial	"Upper limb., m.lok. h.s."	"Superficial: Upper limb., m.lok. h.s."	H.Upper limb.
+49	Superficial	"Upper limb., m.lok. v.s."	"Superficial: Upper limb., m.lok. v.s."	V.Upper limb.
+50	Superficial	"Overarm, h.s."	"Superficial: Overarm, h.s."	Overarm hø
+51	Superficial	"Overarm, v.s."	"Superficial: Overarm, v.s."	Overarm ve
+52	Superficial	"Albu, h.s."	"Superficial: Albu, h.s."	Albu hø
+53	Superficial	"Albu, v.s."	"Superficial: Albu, v.s."	Albu ve
+54	Superficial	"Underarm, h.s."	"Superficial: Underarm, h.s."	Underarm hø
+55	Superficial	"Underarm, v.s."	"Superficial: Underarm, v.s."	Underarm ve
+56	Superficial	"Hand, h.s."	"Superficial: Hand, h.s."	Hand hø
+57	Superficial	"Hand, v.s."	"Superficial: Hand, v.s."	Hand ve
+60	Superficial	"Lower body, ins."	"Superficial: Lower body, ins."	Lower body ins
+61	Superficial	"Lower body, mult.lok."	"Superficial: Lower body, mult.lok."	Lower body mul
+62	Superficial	Abdomen	Superficial: Abdomen	Abdomen
+63	Superficial	"Abdomen, v.s."	"Superficial: Abdomen, v.s."	Abdomen ve
+64	Superficial	"Abdomen, h.s."	"Superficial: Abdomen, h.s."	Abdomen hø
+65	Superficial	"Flank, v.s."	"Superficial: Flank, v.s."	Flank ve
+66	Superficial	"Flank, h.s."	"Superficial: Flank, h.s."	Flank hø
+67	Superficial	Lumbar region. v.s.	Superficial: Lumbar region. v.s.	Lumbar region. ve
+68	Superficial	Lumbar region. h.s.	Superficial: Lumbar region. h.s.	Lumbar region. hø
+69	Superficial	Lumbar region.	Superficial: Lumbar region.	Lumbar region.
+70	Superficial	"Lyske, h.s."	"Superficial: Lyske, h.s."	Lyske hø
+71	Superficial	"Lyske, v.s."	"Superficial: Lyske, v.s."	Lyske ve
+72	Superficial	"Kjønnsorgan, ytre"	"Superficial: Kjønnsorgan, ytre"	Kjønnsorgan
+73	Superficial	Perineum	Superficial: Perineum	Perineum
+74	Superficial	Analreg.	Superficial: Analreg.	Analreg.
+75	Superficial	Crena ani	Superficial: Crena ani	Crena ani
+76	Superficial	"Sete, h.s."	"Superficial: Sete, h.s."	Sete hø
+77	Superficial	"Sete, v.s."	"Superficial: Sete, v.s."	Sete ve
+78	Superficial	"Hofte, h.s."	"Superficial: Hofte, h.s."	Hofte hø
+79	Superficial	"Hofte, v.s."	"Superficial: Hofte, v.s."	Hofte ve
+80	Superficial	"Underekstr., h.s. ins."	"Superficial: Underekstr., h.s. ins."	Underekstr. hø
+81	Superficial	"Underekstr., v.s. ins."	"Superficial: Underekstr., v.s. ins."	Underekstr. ve
+82	Superficial	"Underekstr., h.s. m.lok."	"Superficial: Underekstr., h.s. m.lok."	Underekstr. hø
+83	Superficial	"Underekstr., v.s. m.lok."	"Superficial: Underekstr., v.s. m.lok."	Underekstr. ve
+84	Superficial	"Lår, h.s."	"Superficial: Lår, h.s."	Lår hø
+85	Superficial	"Lår, v.s."	"Superficial: Lår, v.s."	Lår ve
+86	Superficial	"Kne, h.s."	"Superficial: Kne, h.s."	Kne hø
+87	Superficial	"Kne, v.s."	"Superficial: Kne, v.s."	Kne ve
+88	Superficial	"Legg, h.s."	"Superficial: Legg, h.s."	Legg hø
+89	Superficial	"Legg, v.s."	"Superficial: Legg, v.s."	Legg ve
+90	Superficial	"Fot, h.s."	"Superficial: Fot, h.s."	Fot hø
+91	Superficial	"Fot, v.s."	"Superficial: Fot, v.s."	Fot ve
+99	Superficial	"Kroppen, hele"	"Superficial: Kroppen, hele"	Kroppen hele
+100	Soft tissue	Head/Neck ins.	Soft tissue: Head/Neck ins.	Head/Neck ins.
+101	Soft tissue	"Faceshalvdel, v.s."	"Soft tissue: Faceshalvdel, v.s."	V.Faceshalv.
+102	Soft tissue	"Faceshalvdel, h.s."	"Soft tissue: Faceshalvdel, h.s."	H.Faceshalv.
+110	Soft tissue	Sella turcica	Soft tissue: Sella turcica	Sella turcica
+111	Soft tissue	"Orbita, v.s."	"Soft tissue: Orbita, v.s."	Orbita ve
+112	Soft tissue	"Orbita, bilat."	"Soft tissue: Orbita, bilat."	Orbita bilat.
+114	Soft tissue	"Orbita, h.s."	"Soft tissue: Orbita, h.s."	Orbita hø
+116	Soft tissue	"Maxille, bilat."	"Soft tissue: Maxille, bilat."	Maxille bilat.
+117	Soft tissue	"Maxille, v.s."	"Soft tissue: Maxille, v.s."	Maxille ve
+118	Soft tissue	"Maxille, h.s."	"Soft tissue: Maxille, h.s."	Maxille hø
+120	Soft tissue	Epipharynx	Soft tissue: Epipharynx	Epipharynx
+121	Soft tissue	Nosekav./Epipharynx	Soft tissue: Nosekav./Epipharynx	Nosekav./Epiph
+122	Soft tissue	"Parotis, bilat."	"Soft tissue: Parotis, bilat."	Parotis bilat.
+123	Soft tissue	"Parotis, v.s."	"Soft tissue: Parotis, v.s."	Parotis ve
+124	Soft tissue	"Parotis, h.s."	"Soft tissue: Parotis, h.s."	Parotis hø
+125	Soft tissue	"Ear, v.s."	"Soft tissue: Ear, v.s."	Ear ve
+126	Soft tissue	"Ear, h.s."	"Soft tissue: Ear, h.s."	Ear hø
+128	Soft tissue	"Tonsille, bilat."	"Soft tissue: Tonsille, bilat."	Tonsille bilat
+129	Soft tissue	"Tonsille, v.s."	"Soft tissue: Tonsille, v.s."	Tonsille ve
+130	Soft tissue	"Tonsille, h.s."	"Soft tissue: Tonsille, h.s."	Tonsille hø
+140	Soft tissue	"Oris, bilat."	"Soft tissue: Oris, bilat."	Oris bilat.
+141	Soft tissue	"Oris, v.s."	"Soft tissue: Oris, v.s."	Oris ve
+142	Soft tissue	"Oris, h.s."	"Soft tissue: Oris, h.s."	Oris hø
+144	Soft tissue	"Gingiva, bilat."	"Soft tissue: Gingiva, bilat."	Gingiva bilat.
+145	Soft tissue	"Gingiva, v.s."	"Soft tissue: Gingiva, v.s."	Gingiva ve
+146	Soft tissue	"Gingiva, h.s."	"Soft tissue: Gingiva, h.s."	Gingiva hø
+148	Soft tissue	Gane	Soft tissue: Gane	Gane
+150	Soft tissue	Munngolv	Soft tissue: Munngolv	Munngolv
+151	Soft tissue	"Bucca, v.s."	"Soft tissue: Bucca, v.s."	Bucca ve
+152	Soft tissue	"Bucca, h.s."	"Soft tissue: Bucca, h.s."	Bucca hø
+154	Soft tissue	Tunge	Soft tissue: Tunge	Tunge
+155	Soft tissue	"Tunge, v.s"	"Soft tissue: Tunge, v.s"	Tunge ve
+156	Soft tissue	"Tunge, h.s"	"Soft tissue: Tunge, h.s"	Tunge hø
+158	Soft tissue	Underleppe	Soft tissue: Underleppe	Underleppe
+160	Soft tissue	Overleppe	Soft tissue: Overleppe	Overleppe
+162	Soft tissue	Hypopharynx	Soft tissue: Hypopharynx	Hypopharynx
+164	Soft tissue	Larynx	Soft tissue: Larynx	Larynx
+166	Soft tissue	Oropharynx	Soft tissue: Oropharynx	Oropharynx
+170	Soft tissue	"Mandibula/Ø.Throat,bilat"	"Soft tissue: Mandibula/Ø.Throat,bilat"	Mandibula bil.
+171	Soft tissue	"Mandibula/Ø.Throat, v.s"	"Soft tissue: Mandibula/Ø.Throat, v.s"	V.Mandibula
+172	Soft tissue	"Mandibula/Ø.Throat, h.s"	"Soft tissue: Mandibula/Ø.Throat, h.s"	H.Mandibula
+174	Soft tissue	"Throat, bilat."	"Soft tissue: Throat, bilat."	Throat bilat.
+175	Soft tissue	"Throat, v.s."	"Soft tissue: Throat, v.s."	Throat ve
+176	Soft tissue	"Throat, h.s."	"Soft tissue: Throat, h.s."	Throat hø
+178	Soft tissue	"Throat/Supracl., bilat."	"Soft tissue: Throat/Supracl., bilat."	Throat/Supracl. 
+179	Soft tissue	"Throat/Supraclav, v.s."	"Soft tissue: Throat/Supraclav, v.s."	V.Throat/Supracl
+180	Soft tissue	"Throat/Supraclav, h.s."	"Soft tissue: Throat/Supraclav, h.s."	H.Throat/Supracl
+200	Soft tissue	"Upper body, ins."	"Soft tissue: Upper body, ins."	Upper body ins.
+201	Soft tissue	"Upper body, mult.lok."	"Soft tissue: Upper body, mult.lok."	Upper body mult
+202	Soft tissue	Upper body (hele)	Soft tissue: Upper body (hele)	Upper body hele
+203	Soft tissue	"Supraclav, v.s."	"Soft tissue: Supraclav, v.s."	Supraclav ve
+204	Soft tissue	"Supraclav, h.s."	"Soft tissue: Supraclav, h.s."	Supraclav hø
+205	Soft tissue	"Supraclav, bilat."	"Soft tissue: Supraclav, bilat."	Supraclav bila
+206	Soft tissue	"Supra-/Infracl, bilat"	"Soft tissue: Supra-/Infracl, bilat"	Supra-/Infracl
+207	Soft tissue	"Supracl/Infracl., v.s."	"Soft tissue: Supracl/Infracl., v.s."	V.Supracl/Infr
+208	Soft tissue	"Supracl/Infracl., h.s."	"Soft tissue: Supracl/Infracl., h.s."	H.Supracl/Infr
+209	Soft tissue	"Supracl/Parast., v.s."	"Soft tissue: Supracl/Parast., v.s."	V.Supracl/Para
+210	Soft tissue	"Supracl/Parast., h.s."	"Soft tissue: Supracl/Parast., h.s."	H.Supracl/Para
+211	Soft tissue	"Supracl/Parast, bilat"	"Soft tissue: Supracl/Parast, bilat"	Supracl/Parast
+212	Soft tissue	"Supracl/Axille, bilat"	"Soft tissue: Supracl/Axille, bilat"	Supracl/Axille
+213	Soft tissue	"Supracl/Axille, v.s."	"Soft tissue: Supracl/Axille, v.s."	V.Supracl/Ax
+214	Soft tissue	"Supracl/Axille, h.s."	"Soft tissue: Supracl/Axille, h.s."	H.Supracl/Ax
+215	Soft tissue	"Reg. lymfekn., v.s."	"Soft tissue: Reg. lymfekn., v.s."	V.Reg. lymfekn
+216	Soft tissue	"Reg. lymfekn., h.s."	"Soft tissue: Reg. lymfekn., h.s."	H.Reg. lymfekn
+217	Soft tissue	"Reg. lymfekn., bilat."	"Soft tissue: Reg. lymfekn., bilat."	Reg. lymfekn.
+218	Soft tissue	"Mediast/Supracl, bilat"	"Soft tissue: Mediast/Supracl, bilat"	Mediast/Suprac
+219	Soft tissue	"Mediast/Supracl., v.s."	"Soft tissue: Mediast/Supracl., v.s."	V.Mediast/Supr
+220	Soft tissue	"Mediast/Supracl., h.s."	"Soft tissue: Mediast/Supracl., h.s."	H.Mediast/Supr
+221	Soft tissue	"Parasternal, v.s."	"Soft tissue: Parasternal, v.s."	Parasternal ve
+222	Soft tissue	"Parasternal, h.s."	"Soft tissue: Parasternal, h.s."	Parasternal hø
+223	Soft tissue	"Parasternal, bilat."	"Soft tissue: Parasternal, bilat."	Parasternal bi
+224	Soft tissue	"Hilus/Mediast., bilat."	"Soft tissue: Hilus/Mediast., bilat."	Hilus/Mediast.
+225	Soft tissue	"Hilus/Mediast., v.s."	"Soft tissue: Hilus/Mediast., v.s."	V.Hilus/Medias
+226	Soft tissue	"Hilus/Mediast., h.s."	"Soft tissue: Hilus/Mediast., h.s."	H.Hilus/Medias
+227	Soft tissue	Kappefelt	Soft tissue: Kappefelt	Kappefelt
+228	Soft tissue	Mediastinum	Soft tissue: Mediastinum	Mediastinum
+229	Soft tissue	"Halvsid.kappef., v.s."	"Soft tissue: Halvsid.kappef., v.s."	V.Halvsid.kap.
+230	Soft tissue	"Halvsid.kappef., h.s."	"Soft tissue: Halvsid.kappef., h.s."	H.Halvsid.kap.
+231	Soft tissue	"Thorax, foran v.s."	"Soft tissue: Thorax, foran v.s."	V.Thorax foran
+232	Soft tissue	"Thorax, foran h.s."	"Soft tissue: Thorax, foran h.s."	H.Thorax foran
+233	Soft tissue	"Thorax, foran bilat."	"Soft tissue: Thorax, foran bilat."	Thorax foran b
+234	Soft tissue	"Thorax, bak bilat."	"Soft tissue: Thorax, bak bilat."	Thorax bak bil
+235	Soft tissue	"Thorax, bak v.s."	"Soft tissue: Thorax, bak v.s."	Thorax bak ve
+236	Soft tissue	"Thorax, bak h.s."	"Soft tissue: Thorax, bak h.s."	Thorax bak hø
+237	Soft tissue	"Thorax, på sida v.s."	"Soft tissue: Thorax, på sida v.s."	V.Thorax side
+238	Soft tissue	"Thorax, på sida h.s."	"Soft tissue: Thorax, på sida h.s."	H.Thorax side
+239	Soft tissue	"Mamma/Thoraxvegg, v.s."	"Soft tissue: Mamma/Thoraxvegg, v.s."	V.Mamma/TV
+240	Soft tissue	"Mamma/Thoraxvegg, h.s."	"Soft tissue: Mamma/Thoraxvegg, h.s."	H.Mamma/TV
+241	Soft tissue	"Thoraxv/Reg.lymfkn., v.s."	"Soft tissue: Thoraxv/Reg.lymfkn., v.s."	V.Thoraxv/LK
+242	Soft tissue	"Thoraxv/Reg.lymfkn., h.s."	"Soft tissue: Thoraxv/Reg.lymfkn., h.s."	H.Thoraxv/LK
+243	Soft tissue	"Mamma/Reg.lymfekn., v.s."	"Soft tissue: Mamma/Reg.lymfekn., v.s."	V.Mamma/LK
+244	Soft tissue	"Mamma/Reg.lymfekn., h.s."	"Soft tissue: Mamma/Reg.lymfekn., h.s."	H.Mamma/LK
+245	Soft tissue	"Lunger, begge /Mediast"	"Soft tissue: Lunger, begge /Mediast"	Lunger/Mediast
+246	Soft tissue	"Lunger, begge"	"Soft tissue: Lunger, begge"	Lunger begge
+247	Soft tissue	"Lunge, v.s."	"Soft tissue: Lunge, v.s."	Lunge ve
+248	Soft tissue	"Lunge, h.s."	"Soft tissue: Lunge, h.s."	Lunge hø
+249	Soft tissue	"Lunge, del av v.s."	"Soft tissue: Lunge, del av v.s."	V.Lunge del
+250	Soft tissue	"Lunge, del av h.s."	"Soft tissue: Lunge, del av h.s."	H.Lunge del
+251	Soft tissue	"Axille, v.s."	"Soft tissue: Axille, v.s."	Axille ve
+252	Soft tissue	"Axille, h.s."	"Soft tissue: Axille, h.s."	Axille hø
+253	Soft tissue	"Shoulder, v.s"	"Soft tissue: Shoulder, v.s"	Shoulder ve
+254	Soft tissue	"Shoulder, h.s"	"Soft tissue: Shoulder, h.s"	Shoulder hø
+255	Soft tissue	Oesophagus	Soft tissue: Oesophagus	Oesophagus
+256	Soft tissue	"Mamille, v.s."	"Soft tissue: Mamille, v.s."	V.Mamille
+257	Soft tissue	"Mamille, h.s"	"Soft tissue: Mamille, h.s"	H.Mamille
+258	Soft tissue	Thymus	Soft tissue: Thymus	Thymus
+259	Soft tissue	Ventrikkel	Soft tissue: Ventrikkel	Ventrikkel
+260	Soft tissue	Pankreas	Soft tissue: Pankreas	Pankreas
+261	Soft tissue	"Upper limb., v.s. ins."	"Soft tissue: Upper limb., v.s. ins."	Upper limb. ve 
+262	Soft tissue	"Upper limb., h.s. ins."	"Soft tissue: Upper limb., h.s. ins."	Upper limb. hø 
+263	Soft tissue	"Upper limb., mult. lok. v.s."	"Soft tissue: Upper limb., mult. lok. v.s."	Upper limb. ve 
+264	Soft tissue	"Upper limb., mult. lok. h.s."	"Soft tissue: Upper limb., mult. lok. h.s."	Upper limb. hø
+265	Soft tissue	"Overarm, v.s."	"Soft tissue: Overarm, v.s."	Overarm ve
+266	Soft tissue	"Overarm, h.s."	"Soft tissue: Overarm, h.s."	Overarm hø
+267	Soft tissue	"Albu, v.s."	"Soft tissue: Albu, v.s."	Albu ve
+268	Soft tissue	"Albu, h.s."	"Soft tissue: Albu, h.s."	Albu hø
+269	Soft tissue	"Underarm, v.s."	"Soft tissue: Underarm, v.s."	Underarm ve
+270	Soft tissue	"Underarm, h.s."	"Soft tissue: Underarm, h.s."	Underarm hø
+271	Soft tissue	"Hand, v.s."	"Soft tissue: Hand, v.s."	Hand ve
+272	Soft tissue	"Hand, h.s."	"Soft tissue: Hand, h.s."	Hand hø
+300	Soft tissue	"Lower body, ins."	"Soft tissue: Lower body, ins."	Lower body ins
+301	Soft tissue	"Lower body, mult.lok."	"Soft tissue: Lower body, mult.lok."	Lower body mul
+302	Soft tissue	Lower body (hele)	Soft tissue: Lower body (hele)	Lower body hel
+303	Soft tissue	Skorstein	Soft tissue: Skorstein	Skorstein
+304	Soft tissue	Abdomen	Soft tissue: Abdomen	Abdomen
+305	Soft tissue	"Abdomen, v.s."	"Soft tissue: Abdomen, v.s."	Abdomen ve
+306	Soft tissue	"Abdomen, h.s."	"Soft tissue: Abdomen, h.s."	Abdomen hø
+307	Soft tissue	Lever	Soft tissue: Lever	Lever
+308	Soft tissue	"Nyre, h.s."	"Soft tissue: Nyre, h.s."	Nyre hø
+309	Soft tissue	"Nyre, v.s."	"Soft tissue: Nyre, v.s."	Nyre ve
+310	Soft tissue	Milt	Soft tissue: Milt	Milt
+311	Soft tissue	Ovaria	Soft tissue: Ovaria	Ovaria
+312	Soft tissue	Bekken	Soft tissue: Bekken	Bekken
+313	Soft tissue	"Bekken, v.s."	"Soft tissue: Bekken, v.s."	Bekken ve
+314	Soft tissue	"Bekken, h.s."	"Soft tissue: Bekken, h.s."	Bekken hø
+315	Soft tissue	"Flank, v.s."	"Soft tissue: Flank, v.s."	Flank ve
+316	Soft tissue	"Flank, h.s."	"Soft tissue: Flank, h.s."	Flank hø
+318	Soft tissue	Lumbal	Soft tissue: Lumbal	Lumbal
+320	Soft tissue	"Lumbal/Iliacal,bilat"	"Soft tissue: Lumbal/Iliacal,bilat"	Lumbal/Iliacal
+321	Soft tissue	Lumbal/Iliacal v.s.	Soft tissue: Lumbal/Iliacal v.s.	V.Lumbal/Iliac
+322	Soft tissue	Lumbal/Iliacal h.s.	Soft tissue: Lumbal/Iliacal h.s.	H.Lumbal/Iliac
+324	Soft tissue	Lumb/Iliac/Lyske	Soft tissue: Lumb/Iliac/Lyske	Lumb/Iliac/Lys
+325	Soft tissue	Lumb/Iliac/Lyske v.s.	Soft tissue: Lumb/Iliac/Lyske v.s.	V.Lum/Iliac/Ly
+326	Soft tissue	Lumb/Iliac/Lyske h.s.	Soft tissue: Lumb/Iliac/Lyske h.s.	H.Lum/Iliac/Ly
+328	Soft tissue	Iliacal	Soft tissue: Iliacal	Iliacal
+329	Soft tissue	"Iliacal, v.s."	"Soft tissue: Iliacal, v.s."	Iliacal ve
+330	Soft tissue	"Iliacal, h.s."	"Soft tissue: Iliacal, h.s."	Iliacal hø
+332	Soft tissue	Iliacal/Lyske	Soft tissue: Iliacal/Lyske	Iliacal/Lyske
+333	Soft tissue	"Iliacal/Lyske, v.s."	"Soft tissue: Iliacal/Lyske, v.s."	V.Iliacal/Lysk
+334	Soft tissue	"Iliacal/Lyske, h.s."	"Soft tissue: Iliacal/Lyske, h.s."	H.Iliacal/Lysk
+335	Soft tissue	"Lyske, v.s."	"Soft tissue: Lyske, v.s."	Lyske ve
+336	Soft tissue	"Lyske, h.s."	"Soft tissue: Lyske, h.s."	Lyske hø
+338	Soft tissue	Ytre kjønnsorgan	Soft tissue: Ytre kjønnsorgan	Ytre kjønnsorg
+340	Soft tissue	Anus/Rectum	Soft tissue: Anus/Rectum	Anus/Rectum
+341	Soft tissue	Vesica	Soft tissue: Vesica	Vesica
+342	Soft tissue	Prostata	Soft tissue: Prostata	Prostata
+343	Soft tissue	Prostata og vesicler	Soft tissue: Prostata og vesicler	Prostata/Ves.
+344	Soft tissue	Vagina	Soft tissue: Vagina	Vagina
+345	Soft tissue	Uterus	Soft tissue: Uterus	Uterus
+346	Soft tissue	Vagina/Uterus	Soft tissue: Vagina/Uterus	Vagina/Uterus
+347	Soft tissue	Cervix	Soft tissue: Cervix	Cervix
+348	Soft tissue	"Prostataseng,"	"Soft tissue: Prostataseng,"	Prostataseng
+349	Soft tissue	Urethra	Soft tissue: Urethra	Urethra
+351	Soft tissue	"Binyre, v.s."	"Soft tissue: Binyre, v.s."	Binyre ve
+352	Soft tissue	"Binyre, h.s."	"Soft tissue: Binyre, h.s."	Binyre hø
+353	Soft tissue	"Sete, v.s."	"Soft tissue: Sete, v.s."	Sete ve
+354	Soft tissue	"Sete, h.s."	"Soft tissue: Sete, h.s."	Sete hø
+373	Soft tissue	"Hofte, v.s."	"Soft tissue: Hofte, v.s."	Hofte ve
+374	Soft tissue	"Hofte, h.s."	"Soft tissue: Hofte, h.s."	Hofte hø
+375	Soft tissue	"Underekstr., ins. v.s."	"Soft tissue: Underekstr., ins. v.s."	V.Underekstr.
+376	Soft tissue	"Underekstr., ins. h.s."	"Soft tissue: Underekstr., ins. h.s."	H.Underekstr.
+377	Soft tissue	"Underekstr.mul.lok., v.s."	"Soft tissue: Underekstr.mul.lok., v.s."	V.Underekstr.
+378	Soft tissue	"Underekstr.mul.lok., h.s."	"Soft tissue: Underekstr.mul.lok., h.s."	H.Underekstr.
+385	Soft tissue	"Lår, v.s."	"Soft tissue: Lår, v.s."	Lår ve
+386	Soft tissue	"Lår, h.s."	"Soft tissue: Lår, h.s."	Lår hø
+387	Soft tissue	"Kne, v.s."	"Soft tissue: Kne, v.s."	Kne ve
+388	Soft tissue	"Kne, h.s."	"Soft tissue: Kne, h.s."	Kne hø
+389	Soft tissue	"Legg, v.s."	"Soft tissue: Legg, v.s."	Legg ve
+390	Soft tissue	"Legg, h.s."	"Soft tissue: Legg, h.s."	Legg hø
+393	Soft tissue	"Fot, v.s."	"Soft tissue: Fot, v.s."	Fot ve
+394	Soft tissue	"Fot, h.s."	"Soft tissue: Fot, h.s."	Fot hø
+400	CNS	Whole central nervous system	CNS: Whole central nervous system	CNS Whole
+401	CNS	Whole brain	CNS: Whole brain	Whole brain
+402	CNS	"Brain,ø.cerv.med."	"CNS: Brain,ø.cerv.med."	Brain/Ø.cerv
+403	CNS	"Half Brain, v.s."	"CNS: Half Brain, v.s."	V.Hjernehalv.
+404	CNS	"Half Brain, h.s."	"CNS: Half Brain, h.s."	H.Hjernehalv.
+405	CNS	"Frontalreg., v.s."	"CNS: Frontalreg., v.s."	Frontalreg. ve
+406	CNS	"Frontalreg., h.s."	"CNS: Frontalreg., h.s."	Frontalreg. hø
+407	CNS	"Temporalreg., v.s."	"CNS: Temporalreg., v.s."	V.Temporalreg
+408	CNS	"Temporalreg., h.s."	"CNS: Temporalreg., h.s."	H.Temporalreg
+409	CNS	"Parietalreg., v.s."	"CNS: Parietalreg., v.s."	V.Parietalreg
+410	CNS	"Parietalreg., h.s."	"CNS: Parietalreg., h.s."	H.Parietalreg
+411	CNS	"Occipitalreg., v.s."	"CNS: Occipitalreg., v.s."	V.Occipitalreg
+412	CNS	"Occipitalreg., h.s."	"CNS: Occipitalreg., h.s."	H.Occipitalreg
+413	CNS	Hjernestammen	CNS: Hjernestammen	Hjernestammen
+414	CNS	Cerebellum	CNS: Cerebellum	Cerebellum
+415	CNS	"Brain,begrensa del"	"CNS: Brain,begrensa del"	Brain (del)
+416	CNS	Cervicalmedulla	CNS: Cervicalmedulla	Cervical med.
+417	CNS	Cervical/Thoracalmed	CNS: Cervical/Thoracalmed	Cervical/Thora
+418	CNS	Thoracalmedulla	CNS: Thoracalmedulla	Thoracal med.
+419	CNS	Hele medulla	CNS: Hele medulla	Hele medulla
+501	Skeleton	Neurocranium	Skeleton: Neurocranium	Neurocranium
+502	Skeleton	Skallebasis	Skeleton: Skallebasis	Skallebasis
+503	Skeleton	Templesbenpyr. v.s.	Skeleton: Templesbenpyr. v.s.	V.Templesben
+504	Skeleton	Templesbenpyr. h.s.	Skeleton: Templesbenpyr. h.s.	H.Templesben
+505	Skeleton	FacesSkeleton	Skeleton: FacesSkeleton	Facesskj.
+506	Skeleton	Mandibula	Skeleton: Mandibula	Mandibula
+512	Skeleton	Hele bekkenet	Skeleton: Hele bekkenet	Hele bekkenet
+513	Skeleton	"Bekken, v.s."	"Skeleton: Bekken, v.s."	Bekken ve
+514	Skeleton	"Bekken, h.s."	"Skeleton: Bekken, h.s."	Bekken hø
+517	Skeleton	Cervicalcolumna	Skeleton: Cervicalcolumna	Cervical
+518	Skeleton	Cervical/Thoracalcol	Skeleton: Cervical/Thoracalcol	Cervical/Thora
+519	Skeleton	Upper thoracalcolumna	Skeleton: Upper thoracalcolumna	Upper thoracal
+520	Skeleton	Thoracalcolumna	Skeleton: Thoracalcolumna	Thoracal
+521	Skeleton	Lower thoracalcol.	Skeleton: Lower thoracalcol.	Lower thoracal
+522	Skeleton	Thoracal/Lumbalcol.	Skeleton: Thoracal/Lumbalcol.	Thoracal/Lumba
+523	Skeleton	Lumbalcolumna	Skeleton: Lumbalcolumna	Lumbal
+524	Skeleton	Lumbalcolumna/Sacrum	Skeleton: Lumbalcolumna/Sacrum	Lumbal/Sacrum
+525	Skeleton	Sacrum	Skeleton: Sacrum	Sacrum
+526	Skeleton	Hele columna	Skeleton: Hele columna	Hele columna
+527	Skeleton	Coccyx	Skeleton: Coccyx	Coccyx
+530	Skeleton	Sternum	Skeleton: Sternum	Sternum
+531	Skeleton	"Costa, foran v.s."	"Skeleton: Costa, foran v.s."	Costa foran ve
+532	Skeleton	"Costa, foran h.s."	"Skeleton: Costa, foran h.s."	Costa foran hø
+533	Skeleton	"Clavicula, v.s."	"Skeleton: Clavicula, v.s."	Clavicula ve
+534	Skeleton	"Clavicula, h.s."	"Skeleton: Clavicula, h.s."	Clavicula hø
+535	Skeleton	"Costa, bak v.s."	"Skeleton: Costa, bak v.s."	Costa bak ve
+536	Skeleton	"Costa, bak h.s."	"Skeleton: Costa, bak h.s."	Costa bak hø
+537	Skeleton	"Costa, på sida v.s."	"Skeleton: Costa, på sida v.s."	V.Costa side
+538	Skeleton	"Costa, på sida h.s."	"Skeleton: Costa, på sida h.s."	H.Costa side
+541	Skeleton	"Os ilium, v.s."	"Skeleton: Os ilium, v.s."	Os ilium ve
+542	Skeleton	"Os ilium, h.s."	"Skeleton: Os ilium, h.s."	Os ilium hø
+543	Skeleton	"Os pubis, v.s."	"Skeleton: Os pubis, v.s."	Os pubis ve
+544	Skeleton	"Os pubis, h.s."	"Skeleton: Os pubis, h.s."	Os pubis hø
+545	Skeleton	"Os ischie, v.s."	"Skeleton: Os ischie, v.s."	Os ischie ve
+546	Skeleton	"Os ischie, h.s."	"Skeleton: Os ischie, h.s."	Os ischie hø
+549	Skeleton	"Scapula, v.s."	"Skeleton: Scapula, v.s."	Scapula ve
+550	Skeleton	"Scapula, h.s."	"Skeleton: Scapula, h.s."	Scapula hø
+553	Skeleton	"Shoulder, v.s."	"Skeleton: Shoulder, v.s."	Shoulder ve
+554	Skeleton	"Shoulder, h.s."	"Skeleton: Shoulder, h.s."	Shoulder hø
+561	Skeleton	"Upper limb., ins. v.s."	"Skeleton: Upper limb., ins. v.s."	V.Upper limb.
+562	Skeleton	"Upper limb., ins. h.s."	"Skeleton: Upper limb., ins. h.s."	H.Upper limb.
+563	Skeleton	"Upper limb., m.lok. v.s."	"Skeleton: Upper limb., m.lok. v.s."	V.Upper limb.
+564	Skeleton	"Upper limb., m.lok. h.s."	"Skeleton: Upper limb., m.lok. h.s."	H.Upper limb.
+565	Skeleton	"Overarm, v.s."	"Skeleton: Overarm, v.s."	Overarm ve
+566	Skeleton	"Overarm, h.s."	"Skeleton: Overarm, h.s."	Overarm hø
+567	Skeleton	"Albu, v.s."	"Skeleton: Albu, v.s."	Albu ve
+568	Skeleton	"Albu, h.s."	"Skeleton: Albu, h.s."	Albu hø
+569	Skeleton	"Underarm, v.s."	"Skeleton: Underarm, v.s."	Underarm ve
+570	Skeleton	"Underarm, h.s."	"Skeleton: Underarm, h.s."	Underarm hø
+571	Skeleton	"Hand, v.s."	"Skeleton: Hand, v.s."	Hand ve
+572	Skeleton	"Hand, h.s."	"Skeleton: Hand, h.s."	Hand hø
+573	Skeleton	"Hofte, v.s."	"Skeleton: Hofte, v.s."	Hofte ve
+574	Skeleton	"Hofte, h.s."	"Skeleton: Hofte, h.s."	Hofte hø
+575	Skeleton	"Underekstr., ins. v.s."	"Skeleton: Underekstr., ins. v.s."	V.Underekstr.
+576	Skeleton	"Underekstr., ins. h.s."	"Skeleton: Underekstr., ins. h.s."	H.Underekstr.
+577	Skeleton	"Underekstr., m.lok. v.s."	"Skeleton: Underekstr., m.lok. v.s."	V.Underekstr.
+578	Skeleton	"Underekstr., m.lok. h.s."	"Skeleton: Underekstr., m.lok. h.s."	H.Underekstr.
+585	Skeleton	"Lår, v.s."	"Skeleton: Lår, v.s."	Lår ve
+586	Skeleton	"Lår, h.s."	"Skeleton: Lår, h.s."	Lår hø
+587	Skeleton	"Kne, v.s."	"Skeleton: Kne, v.s."	Kne ve
+588	Skeleton	"Kne, h.s."	"Skeleton: Kne, h.s."	Kne hø
+589	Skeleton	"Legg, v.s."	"Skeleton: Legg, v.s."	Legg ve
+590	Skeleton	"Legg, h.s."	"Skeleton: Legg, h.s."	Legg hø
+593	Skeleton	"Fot, v.s."	"Skeleton: Fot, v.s."	Fot ve
+594	Skeleton	"Fot, h.s."	"Skeleton: Fot, h.s."	Fot hø
+900	Soft tissue	Hele kroppen	Soft tissue: Hele kroppen	Hele kroppen
