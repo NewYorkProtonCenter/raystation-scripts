@@ -20,7 +20,7 @@ def beam_settings(plan, beam_set, beam):
 def check_mlc_corners(segment):
   violated = False
   if segment.LeafPositions.Length != 2:
-    raise "Unexpected number of leaf positions for segment. Expected 2, got" + str(segment.LeafPositions.Length)
+    raise ValueError("Unexpected number of leaf positions for segment. Expected 2, got" + str(segment.LeafPositions.Length))
   else:
     if segment.LeafPositions[0].Length == 80:
       # Agility/Versa HD:
@@ -41,7 +41,7 @@ def check_mlc_corners(segment):
       limits[2] = limits[37] = 18.4
       limits[3] = limits[36] = 19.5
     else:
-      raise "Unexpected number of leaves for segment. Expected 40 or 80, got" + str(segment.LeafPositions[0].Length)
+      raise ValueError("Unexpected number of leaves for segment. Expected 40 or 80, got" + str(segment.LeafPositions[0].Length))
     # Iterate leaf positions and check against limits:
     for i in range(len(limits)):
       if segment.LeafPositions[0][i] < -limits[i]:
@@ -135,7 +135,7 @@ def accumulated_label_dose(plan, beam_set, label):
     # Get the "plan optimization" corresponding to this beam set (in order to see if background dose has been used):
     beam_set_opt = plan_optimization(plan, beam_set)
     dose = label.dose
-    if beam_set_opt.BackgroundDose:
+    if beam_set_opt and beam_set_opt.BackgroundDose:
       dose += accumulated_label_dose(plan, beam_set_opt.BackgroundDose.ForBeamSet, label)
   return dose
 
@@ -149,15 +149,16 @@ def accumulated_label_dose(plan, beam_set, label):
 # Returns the beam set (if any) which the given beam set depends on (with background dose).
 def background_beam_set(plan, beam_set):
   beam_set_opt = plan_optimization(plan, beam_set)
-  if beam_set_opt.BackgroundDose:
+  if beam_set_opt and beam_set_opt.BackgroundDose:
     return beam_set_opt.BackgroundDose.ForBeamSet
   else:
     return None
 
 # Gives the prescription dose, in Gy:
-def prescription_dose(beam_set):
+def prescription_dose(beam_set) -> float:
   if beam_set.Prescription.PrimaryDosePrescription:
     return beam_set.Prescription.PrimaryDosePrescription.DoseValue / 100.0
+  return 0
 
 # Gives the differential prescription dose, in Gy:
 # For beam sets with background dose, this function will return the prescription dose used in

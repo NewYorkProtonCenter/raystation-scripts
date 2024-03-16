@@ -3,45 +3,8 @@
 #jun.zhou@emory.edu
 #jzhou995@gmail.com
 
-#Change Log
-#Version 1.0 7/16/2021
-#Version 1.1 10/24/2021: add waiting for use check rigid restration on line 151, 152
-#            11/14/2021: add line 43: from connect import *. It is needed for line 152 for add waiting for user interrupt
-#            add the last parameter 'Check_Rigid_Reg' for function evaluate_QACT. If it is true, check rigid registation
-#Version 1.2 12/6/2021: after upgrade to 10B, the RayVersion at 10.1.0.*, which is not the same as the 10B DTK 10.1.100.*.
-#            The pm.CreateHybridDeformableRegistrationGroup() function is the same as that in 9A with less parameters. So I changed line 227-235 to try except, not test the version
-#Version 1.3 12/16/2021: for MapRoiGeometriesDeformably and CopyRoiGeometries, the ROI list shouldn't be empty, otherwise crashes. Corrected this issue, not clinically released yet
-#Version 1.4 12/22/2021: add remove additional override roi exclusions, say add override_ROIs_excluded= z_Contrast, then override_ROIs = list(set(override_ROIs)-set(override_ROIs_excluded)), not clinically released yet
-#            02/10/2022: add override_ROIs_excluded to evaluate_QACT argument list
-#Version 1.5 1/16/2022: 'Body' or 'BODY' is not added from 'additional_control_roi' anymore. Replace line 100: control_roi.extend(target_roi), with line 100 and 101: ROI_Body   = SSF.find_body(case.PatientModel.StructureSets[TPCT_name]), control_roi = list(set(ROI_Body + target_roi)). Not clinically released yet
-#clinically updated on 5/31/2023
-
-#line 143: 'if reg is None':not updated here is for 11B, will add when move to 11B
-#the registration is differantiated with FoR and rigid registration. You can only have 1 FoR, but can have multiple rigid registation. FoR is needed
-#on 5/31/2023, this has been updated
-
-#Version 2.0 5/31/2023: upgrade for RayStation 12A_sp1. All previous clinically not implemented have been implemented.
-#Add 'CopyRoiGeometries_ver11' to the end to solve the version incompatibility for CopyRoiGeometries, changed line 208 with CopyRoiGeometries_ver11
-#Version 3.0 9/13/2023: upgrade for RayStation 2023B. On line 156: Changed from ComputeRigidImageRegistration (ver11), ComputeFoRRegistration (ver12a), to ComputeGrayLevelBasedRigidRegistration
-#                       add parameter 'RayVersion' to calculateDoseOnAdditionalSetFixingHolesIfNeeded() function at lines 225 and 264
-#                       new version change for ComputeDoseOnAdditionalSets and ComputePerturbedDose on Line 275-279:
-
-
-
-
-
-
-
-
-
-
-
-
-#Actual code start from line 40, so all line number reference before are fixed
-import patient_model_functions as PMF
-import structure_set_functions as SSF
-import rois as ROIS
-from connect import *
+from functions import patient_model_functions as PMF, structure_set_functions as SSF
+# from connect import *
 
 def say_hello_to(name):
     print("Hello %s!" % name)
@@ -159,7 +122,7 @@ def evaluate_QACT(case, TPCT_name, TPname, log_filename, RayVersion, additional_
                         f.write('\n' + 'New rigid registration is created')
                         f.close()
                 if Check_Rigid_Reg:
-                    await_user_input('Please double check the rigid registration before continue')
+                    input('Please double check the rigid registration before continue')
 
     #4. Create a new defreg between the pCT and cCBCT1 (with the pCT as the reference) and use this to map the pCT ROISs (except external)
     # deformably to cCBCT1. These ROSs will be used for dosimetric evaluation on the images.

@@ -1,7 +1,7 @@
 # encoding: utf8
 
 # Import local files:
-import tolerance as EQD
+from rt_classes import tolerance as EQD
 
 
 # Alpha/beta values:

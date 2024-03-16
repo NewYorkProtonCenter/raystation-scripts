@@ -1,27 +1,21 @@
 # encoding: utf8
 
 # Import system libraries:
-from connect import *
-import clr, sys, os
+from connect import get_current
+import clr
 # import System.Array
 # clr.AddReference("Office")
 # clr.AddReference("Microsoft.Office.Interop.Excel")
 clr.AddReference("System.Windows.Forms")
 clr.AddReference("System.Drawing")
 # from Microsoft.Office.Interop.Excel import *
-from System.Drawing import (Color, ContentAlignment, Font, FontStyle, Point)
-from System.Windows.Forms import (Application, BorderStyle, Button, CheckBox, DialogResult, Form, FormBorderStyle, Label, Panel, RadioButton, TextBox)
 
 # Import local files:
-import def_choices as DC
-import def_site as DS
-import gui_functions as GUIF
-import patient_model_functions as PMF
-import radio_button as RB
-import roi_functions as ROIF
-import structure_set_functions as SSF
-import ts_case as TS_C
-import ts_patient as TS_P
+from settings import def_choices as DC
+from rt_classes import def_site as DS
+from functions import gui_functions as GUIF, patient_model_functions as PMF, structure_set_functions as SSF
+from gui_classes import radio_button as RB
+from ts_classes import ts_case as TS_C
 
 
 class Definition(object):
@@ -45,6 +39,8 @@ class Definition(object):
       delete = RB.RadioButton('Existing ROIs discovered', 'Select', DC.delete)
       delete_choice = GUIF.collect_delete_choice(delete)
       # If the delete all rois choice was selected, delete rois.
+      if not delete_choice:
+        raise ValueError()
       if delete_choice.value == 'yes':
         PMF.delete_all_rois(pm)
       elif delete_choice.value == 'some':
@@ -65,25 +61,25 @@ class Definition(object):
 
 
     if region == 'brain':
-      import def_brain as DEF_BRAIN
+      from def_regions import def_brain as DEF_BRAIN
       DEF_BRAIN.DefBrain(pm, examination, ss, choices, site)
     elif region == 'lung':
-      import def_lung as DEF_LUNG
+      from def_regions import def_lung as DEF_LUNG
       DEF_LUNG.DefLung(pm, examination, ss, choices, site)
     elif region == 'breast':
-      import def_breast as DEF_BREAST
+      from def_regions import def_breast as DEF_BREAST
       DEF_BREAST.DefBreast(pm, examination, ss, choices, site)
     elif region == 'bladder':
-      import def_bladder as DEF_BLADDER
+      from def_regions import def_bladder as DEF_BLADDER
       DEF_BLADDER.DefBladder(pm, examination, ss, choices, site)
     elif region == 'prostate':
-      import def_prostate as DEF_PROSTATE
+      from def_regions import def_prostate as DEF_PROSTATE
       DEF_PROSTATE.DefProstate(pm, examination, ss, choices, site)
     elif region == 'rectum':
-      import def_rectum as DEF_RECTUM
+      from def_regions import def_rectum as DEF_RECTUM
       DEF_RECTUM.DefRectum(pm, examination, ss, choices, site)
     elif region == 'other':
-      import def_palliative as DEF_PALLIATIVE
+      from def_regions import def_palliative as DEF_PALLIATIVE
       DEF_PALLIATIVE.DefPalliative(pm, examination, ss, choices, site)
 
 

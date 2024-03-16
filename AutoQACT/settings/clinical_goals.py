@@ -1,11 +1,10 @@
 # encoding: utf8
 
 # Import local files:
-import clinical_goal as CG
+from rt_classes import clinical_goal as CG
+from functions import structure_set_functions as SSF
 import rois as ROIS
 import tolerance_doses as TOL
-import roi_functions as ROIF
-import structure_set_functions as SSF
 import region_codes as RC
 
 

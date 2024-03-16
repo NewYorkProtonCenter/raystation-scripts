@@ -3,7 +3,7 @@
 # Import local files:
 import colors as COLORS
 import margins as MARGINS
-import roi as ROI
+from rt_classes import roi as ROI
 
 
 # External:

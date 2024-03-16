@@ -2,14 +2,12 @@
 from __future__ import division
 
 # Import local files:
-import roi as ROI
-import rois as ROIS
-import colors as COLORS
-# import gui_functions as GUIF
+from rt_classes import roi as ROI
+from settings import rois as ROIS, colors as COLORS
 import structure_set_functions as SSF
 
 #JZ to import patient db. need modify in the future
-from connect import *
+from connect import get_current
 
 
 # Creates an algebra roi from a ROIAlgebra object.
@@ -24,7 +22,7 @@ def create_algebra_roi(pm, examination, ss, roi):
   for source_roi in sources:
     if not SSF.has_roi(ss, source_roi.name):
       missing.append(source_roi.name)
-  if len(missing) == 0:
+  if roi_geometry and len(missing) == 0:
     roi_geometry.OfRoi.CreateAlgebraGeometry(
       Examination = examination,
       ExpressionA = roi.expressionA(),
@@ -88,7 +86,7 @@ def create_expanded_roi(pm, examination, ss, roi):
   # Get ROI geometry:
   roi_geometry = SSF.rg(ss, roi.name)
   # Make sure that the source ROI exists:
-  if SSF.has_roi(ss, roi.source.name):
+  if roi_geometry and SSF.has_roi(ss, roi.source.name):
     roi_geometry.OfRoi.CreateMarginGeometry(
       Examination = examination,
       SourceRoiName = roi.source.name,
@@ -275,7 +273,7 @@ def create_wall_roi(pm, examination, ss, roi):
   pm.CreateRoi(Name=roi.name, Color=roi.color, Type=roi.type)
   roi_geometry = SSF.rg(ss, roi.name)
   # Make sure that the source ROI exists:
-  if SSF.has_roi(ss, roi.source.name):
+  if roi_geometry and SSF.has_roi(ss, roi.source.name):
     roi_geometry.OfRoi.SetWallExpression(SourceRoiName=roi.source.name, OutwardDistance=roi.outward_dist, InwardDistance=roi.inward_dist)
     roi_geometry.OfRoi.UpdateDerivedGeometry(Examination=examination, Algorithm="Auto")
   else:
@@ -347,11 +345,12 @@ def get_structure_set(pm, examination):
 def has_defined_ctv_or_ptv(pm, examination):
   match = False
   structure_set = get_structure_set(pm, examination)
-  for rg in structure_set.RoiGeometries:
-    if rg.OfRoi.Type == 'Ctv' and rg.HasContours():
-      match = True
-    elif rg.OfRoi.Type == 'Ptv' and rg.HasContours():
-      match = True
+  if structure_set:
+    for rg in structure_set.RoiGeometries:
+      if rg.OfRoi.Type == 'Ctv' and rg.HasContours():
+        match = True
+      elif rg.OfRoi.Type == 'Ptv' and rg.HasContours():
+        match = True
   return match
 
 

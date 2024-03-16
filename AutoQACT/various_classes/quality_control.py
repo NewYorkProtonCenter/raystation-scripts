@@ -5,30 +5,13 @@
 # Verified for RayStation 6.0.
 
 # System configuration:
-from connect import *
-import sys
 
 # GUI framework (debugging only):
-clr.AddReference("PresentationFramework")
-from System.Windows import *
+# clr.AddReference("PresentationFramework")
 
 # Local script imports:
-import test as TEST
-import raystation_utilities as RSU
-import ts_patient as TS_P
-import ts_case as TS_C
-import ts_poi as TS_POI
-import ts_roi as TS_ROI
-import ts_structure_set as TS_SS
-import ts_poi_geometry as TS_PG
-import ts_roi_geometry as TS_RG
-import ts_plan as TS_PLAN
-import ts_beam_set as TS_BS
-import ts_prescription as TS_PR
-import ts_label as TS_L
-import ts_beam as TS_B
-import ts_segment as TS_S
-import ts_optimization as TS_O
+from functions import raystation_utilities as RSU
+from ts_classes import ts_patient as TS_P, ts_case as TS_C, ts_poi as TS_POI, ts_roi as TS_ROI, ts_structure_set as TS_SS, ts_poi_geometry as TS_PG, ts_roi_geometry as TS_RG, ts_plan as TS_PLAN, ts_beam_set as TS_BS, ts_prescription as TS_PR, ts_label as TS_L, ts_beam as TS_B, ts_segment as TS_S, ts_optimization as TS_O
 
 
 class QualityControl(object):

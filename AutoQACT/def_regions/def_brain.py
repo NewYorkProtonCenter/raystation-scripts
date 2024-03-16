@@ -3,12 +3,8 @@
 # Import system libraries:
 
 # Import local files:
-import colors as COLORS
-import def_oars as DEF
-import margins as MARGINS
-import structure_set_functions as SSF
-import roi as ROI
-import rois as ROIS
+from settings import colors as COLORS, def_oars as DEF, margins as MARGINS, rois as ROIS
+from rt_classes import roi as ROI
 
 # Definitions script for brain treatments (whole brain, part of brain, stereotactic brain).
 class DefBrain(object):

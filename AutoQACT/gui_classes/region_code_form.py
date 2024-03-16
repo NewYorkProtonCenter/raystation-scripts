@@ -5,8 +5,8 @@ import clr
 clr.AddReference("System.Windows.Forms")
 clr.AddReference("System.Drawing")
 
-from System.Drawing import (Color, ContentAlignment, Font, FontStyle, Point)
-from System.Windows.Forms import (Application, BorderStyle, Button, CheckBox, DialogResult, Form, FormBorderStyle, Label, Panel, RadioButton, TextBox)
+from System.Drawing import Point
+from System.Windows.Forms import (BorderStyle, Button, DialogResult, Form, FormBorderStyle, Label, Panel, TextBox)
 
 # Import local files:
 import structure_set_functions as SSF

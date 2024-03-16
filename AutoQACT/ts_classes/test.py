@@ -61,7 +61,7 @@ class Test(object):
 
 # The Parameter class describes a RayStation property (e.g. Beam),
 # and contains tests and sub-parameters.
-class Parameter(object):
+class Parameter:
   def __init__(self, type, value, parent):
     if type:
       self.type = type

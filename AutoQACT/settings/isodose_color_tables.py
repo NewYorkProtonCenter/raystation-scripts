@@ -31,7 +31,7 @@ class ColorTable(object):
       dct.Clear()
       # Set the dose lines of this color table object:
       for isodose in self.isodoses:
-      	dct.Add(isodose.percent, isodose.color)
+        dct.Add(isodose.percent, isodose.color)
       # Set the color table:
       case.CaseSettings.DoseColorMap.ColorTable = dct
 

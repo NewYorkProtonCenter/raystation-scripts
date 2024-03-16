@@ -2,14 +2,10 @@
 
 # Import local files:
 import gui_functions as GUIF
-import objective_adaptation as OA
-import objective_functions as OF
-import rois as ROIS
-import roi_functions as ROIF
-import plan_functions as PF
+from rt_classes import objective_adaptation as OA
+from settings import rois as ROIS, region_codes as RC
 import structure_set_functions as SSF
 import raystation_utilities as RSU
-import region_codes as RC
 
 # Contains a collection of objective functions.
 
@@ -64,7 +60,8 @@ def adaptive_optimization(plan, objective_adaptations):
       po = RSU.plan_optimization(plan, beam_set)
       # Run a new optimization with the updated average dose criterias:
       #plan.PlanOptimizations[0].RunOptimization()
-      po.RunOptimization()
+      if po:
+        po.RunOptimization()
       # Assume the goals are reached until proven otherwise:
       completed = True
       # Check each objective:

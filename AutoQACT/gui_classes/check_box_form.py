@@ -3,8 +3,8 @@ import clr
 clr.AddReference("System.Windows.Forms")
 clr.AddReference("System.Drawing")
 
-from System.Drawing import (Color, ContentAlignment, Font, FontStyle, Point)
-from System.Windows.Forms import (Application, BorderStyle, Button, CheckBox, DialogResult, Form, FormBorderStyle, Label, Panel, CheckBox, TextBox)
+from System.Drawing import Point
+from System.Windows.Forms import (BorderStyle, Button, CheckBox, DialogResult, Form, FormBorderStyle, Label, Panel, CheckBox)
 
 
 # Class that sets up a generic radio button dialogue.

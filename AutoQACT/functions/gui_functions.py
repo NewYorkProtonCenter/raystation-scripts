@@ -3,21 +3,16 @@
 # Import system libraries:
 from connect import *
 import clr, sys
-# import System.Array
 clr.AddReference("System.Windows.Forms")
 clr.AddReference("PresentationFramework")
-from System.Windows import *
-from System.Windows.Forms import (Application, BorderStyle, Button, CheckBox, DialogResult, Form, FormBorderStyle, Label, Panel, RadioButton, TextBox)
+from System.Windows import MessageBox, MessageBoxImage, MessageBoxButton
+from System.Windows.Forms import DialogResult
 
 # Import local files:
-import plan_choices as PC
+from settings import plan_choices as PC, region_codes as RC, rois as ROIS
 import plan_functions as PF
-import radio_button as RB
-import radio_button_form as FORM
-import region_code_form as REGION_FORM
-import region_codes as RC
+from gui_classes import radio_button as RB, radio_button_form as FORM, region_code_form as REGION_FORM
 import structure_set_functions as SSF
-import rois as ROIS
 
 
 # Lists of which number of fractions and fraction dose are allowed for a given region code, i.e treatment site. If the given values does not match the values in the list, an error is raised.
@@ -93,7 +88,7 @@ def collect_choices(options):
 
   choices.append(selection)
 
-  if selection.children:
+  if selection and selection.children:
     next_options = RB.RadioButton(selection.next_category.capitalize(), 'Select ' + selection.next_category +':' , selection.children)
     choices.extend(collect_choices(next_options))
   return choices

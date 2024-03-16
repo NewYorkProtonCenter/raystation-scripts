@@ -9,93 +9,16 @@
 # Email:   jun.zhou@emory.edu
 #          jzhou995@gmail.com
 
-# Date:
-# Ver. 1a  2021.06.16   Initial version
-# Ver. 1b  2021.11.14   Add opition for checking rigid registration
-#                       Changed BackRestore.pyx, structure_set_functions.pyx
-# Ver. 1c  2021.12.22   Add override_ROIs_excluded = ['z_Contrast'] to excldue some other ROIs in the override list. Not clinically released yet
-#          2022.02.10   add override_ROIs_excluded to evaluate_QACT argument list
-# Ver. 1d  2022.01.16   Removed 'Body' from additional_control_roi in line 120. The body contour is auto find now. Not clinically released yet
-#          2022.02.10   Add station_name variable for future 11B in line 107
-# Ver. 1e  2023.01.24   Set check registration by default. On line 161, self.var = IntVar(value = 1)
-
-# Purpose: Perform QACT evaluation with 1 button click
-
-# Notes:   Tested in RS9A and RS10B.
-#          Please save the patient and load the plan before running the script
-#          Not working for 4D evaluation yet. Can only evalute the average CT
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#Start from line 50
-#********************************************************************************
-
-from connect import *
-from System.Windows import *
-import sys, time, os, re
+from connect import get_current
+from System.Windows import MessageBox, await_user_input
+import sys, time, os
 from datetime import datetime, timedelta
-from random import choice
-from string import ascii_uppercase
 import platform
-from tkinter import *
-from tkinter import ttk
+from tkinter import Tk, ttk, IntVar, Checkbutton, Label, Button, StringVar, W
 from time import sleep
 
-sys.path.append(r'\\euh\\ehc\\shares\\RadOnc\\Documents\\RO PHYSICS\\ProtonPhysics\\Scripts_DoNotMove\\RaystationLibraries\\EPTC\\')
 from BackRestore import *
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-from System.Drawing import (Color, ContentAlignment, Font, FontStyle, Point)
-# from System.Windows.Forms import (Application, BorderStyle, Button, CheckBox, DialogResult, Form, FormBorderStyle, Label, Panel, RadioButton, TextBox)
-import math
-
-import patient_model_functions as PMF
-import structure_set_functions as SSF
-import rois as ROIS
 error_message_header = "Missing information / setup"
 
 if platform.python_implementation() == "IronPython":

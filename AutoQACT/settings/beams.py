@@ -1,11 +1,9 @@
 # encoding: utf8
 
 # Import local files:
-import beam_set_functions as BSF
-import case_functions as CF
+from functions import beam_set_functions as BSF, case_functions as CF, structure_set_functions as SSF
 import region_codes as RC
 import rois as ROIS
-import structure_set_functions as SSF
 
 
 # Set up beams or arcs, based on region code (i.e. treatment site).

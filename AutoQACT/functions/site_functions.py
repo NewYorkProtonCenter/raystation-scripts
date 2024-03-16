@@ -1,11 +1,8 @@
 # encoding: utf8
 
 # Import local files:
-import region_codes as RC
-import clinical_goals as CGS
-import objectives as OBJ
-import rt_site as SITE
-import rois as ROIS
+from settings import region_codes as RC, clinical_goals as CGS, objectives as OBJ, rois as ROIS
+from rt_classes import rt_site as SITE
 import patient_model_functions as PMF
 
 

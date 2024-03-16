@@ -6,20 +6,16 @@
 
 # System configuration:
 from connect import *
-import sys
 import math
-#sys.path.append("I:\\HSM - Kreftavdelingen - gammelt fellesområde\\Program\\Skript\\RayStation\\lib".decode('utf8'))
 
 # GUI framework (debugging only):
 #clr.AddReference("PresentationFramework")
 #from System.Windows import *
 
 # Local script imports:
-import test as TEST
-import raystation_utilities as RSU
-import rois as ROIS
-import region_codes as RC
-import structure_set_functions as SSF
+from . import test as TEST
+from functions import raystation_utilities as RSU, structure_set_functions as SSF
+from settings import rois as ROIS, region_codes as RC
 
 # This class contains tests for the RayStation BeamSet object:
 class TSBeamSet(object):
@@ -87,13 +83,17 @@ class TSBeamSet(object):
 
     # Gives the ts_structure_set which corresponds with this beam set:
   def ts_structure_set(self):
-    for ts_struct in self.ts_plan.ts_case.ts_structure_sets:
-      if ts_struct.structure_set.OnExamination == self.beam_set.GetPlanningExamination():
-        return ts_struct
+    if self.ts_plan:
+      for ts_struct in self.ts_plan.ts_case.ts_structure_sets:
+        if ts_struct.structure_set.OnExamination == self.beam_set.GetPlanningExamination():
+          return ts_struct
 
   def asymmetric_jaw_opening_long_test(self):
     t = TEST.Test("Isosenter ser ut til å være asymmetrisk, det bør vurderes å flytte isosenter. Dette for å få målt hele målvolumet med ArcCheck-fantomet", '<10.5 cm', self.isocenter)
-    ss = self.ts_structure_set().structure_set
+    structure_set = self.ts_structure_set()
+    if not structure_set:
+      return t.fail()
+    ss = structure_set.structure_set
     isocenter = None
     ctv_upper = None
     ctv_lower = None
@@ -111,6 +111,8 @@ class TSBeamSet(object):
             ctv_box = roi.GetBoundingBox()
             ctv_box_upper = ctv_box[1].z
             ctv_box_lower = ctv_box[0].z
+            if not ctv_upper or not ctv_lower:
+              return t.fail()
             if abs(ctv_box_upper) < abs(ctv_upper):
               ctv_upper = ctv_box_upper
             if abs(ctv_box_lower) > abs(ctv_lower):
@@ -134,7 +136,7 @@ class TSBeamSet(object):
     for beam in self.beam_set.Beams:
       energies.append(beam.MachineReference.Energy)
     if len(set(energies)) > 1:
-      return t.fail(energies)
+      return t.fail()
     else:
       return t.succeed()
 
@@ -201,7 +203,7 @@ class TSBeamSet(object):
                   failed_beams.append(str(beam.Name.decode('utf8', 'replace')))
 
         if len(failed_beams) >= 1:
-          return t.fail(list(set(failed_beams)))
+          return t.fail()
         else:
           return t.succeed()
 
@@ -210,7 +212,10 @@ class TSBeamSet(object):
     t = TEST.Test("Skal i utgangspunktet være mest mulig sentrert i pasientens aksial-snitt", '<12 cm', self.isocenter)
     photon_iso = None
     if self.beam_set.Modality == 'Photons':
-      ss = self.ts_structure_set().structure_set
+      structure_set = self.ts_structure_set()
+      if not structure_set:
+        return t.fail()
+      ss = structure_set.structure_set
       for beam in self.beam_set.Beams:
         if not photon_iso:
           photon_iso = beam.Isocenter.Position
@@ -239,7 +244,10 @@ class TSBeamSet(object):
     t = TEST.Test("Isosenter skal i utgangspunktet være mest mulig sentrert i long-retning, avstand mellom isosenter og senter av normeringsvolumet bør være mindre enn 1 cm", '<1 cm', self.isocenter)
     if self.beam_set.Modality == 'Photons':
       diff = 0
-      ss = self.ts_structure_set().structure_set
+      structure_set = self.ts_structure_set()
+      if not structure_set:
+        return t.fail()
+      ss = structure_set.structure_set
       target0 = None
       target1 = None
       for roi in ss.RoiGeometries:

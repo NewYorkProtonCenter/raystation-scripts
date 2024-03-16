@@ -7,10 +7,8 @@ import math
 import beam_functions as BF
 import general_functions as GF
 import plan_functions as PF
-import region_codes as RC
-import roi_functions as ROIF
 import structure_set_functions as SSF
-import colors as COLORS
+from settings import colors as COLORS, region_codes as RC
 
 # Contains a collection of beam set functions.
 

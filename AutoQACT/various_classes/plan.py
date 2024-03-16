@@ -2,39 +2,19 @@
 #!/usr/bin/python
 
 # Import system libraries:
-from connect import *
-import clr, sys, os
-import System.Array
-# clr.AddReference("Office")
-# clr.AddReference("Microsoft.Office.Interop.Excel")
+from connect import get_current
+import clr, sys
 clr.AddReference("System.Windows.Forms")
 clr.AddReference("System.Drawing")
-#   from Microsoft.Office.Interop.Excel import *
-from System.Drawing import (Color, ContentAlignment, Font, FontStyle, Point)
-from System.Windows.Forms import (Application, BorderStyle, Button, CheckBox, DialogResult, Form, FormBorderStyle, Label, Panel, RadioButton, TextBox)
-import math
+from System.Windows.Forms import DialogResult
 
 
 # Import local files:
-import beams as BEAMS
-import beam_set_functions as BSF
-import case_functions as CF
-import clinical_goal as CG
-import fractionation_form as FORM
-#import general_functions as GF
-import gui_functions as GUIF
-import margin as MARGIN
-import objective_functions as OBJF
-import patient_model_functions as PMF
-import plan_functions as PF
-import region_codes as RC
-import region_list as REGIONS
-import roi as ROI
-import roi_functions as ROIF
-import rois as ROIS
-import site_functions as SF
-import structure_set_functions as SSF
-import ts_case as TS_C
+from settings import beams as BEAMS, region_codes as RC, rois as ROIS
+from functions import beam_set_functions as BSF, case_functions as CF, gui_functions as GUIF, objective_functions as OBJF, patient_model_functions as PMF, plan_functions as PF, site_functions as SF, structure_set_functions as SSF
+from rt_classes import clinical_goal as CG, region_list as REGIONS
+from gui_classes import fractionation_form as FORM
+from ts_classes import ts_case as TS_C
 
 
 class Plan(object):
@@ -72,7 +52,7 @@ class Plan(object):
       initials = form.SelectedPlannerInitials
       total_dose = nr_fractions * fraction_dose
     elif form.DialogResult == DialogResult.Cancel:
-      print "Script execution cancelled by user..."
+      print("Script execution cancelled by user...")
       sys.exit(0)
     else:
       raise IOError("Unexpected error (selection).")
@@ -213,7 +193,7 @@ class Plan(object):
           PF.create_additional_stereotactic_beamsets_prescriptions_and_beams(plan, examination, ss, region_codes, fraction_dose, nr_fractions, external, nr_existing_beams=nr_beams)
       elif region_code in RC.palliative_codes:
         # Palliative cases with multiple targets:
-        if palliative_choices[0].value in ['sep_beamset_iso', 'sep_beamset_sep_iso']:
+        if palliative_choices and palliative_choices[0].value in ['sep_beamset_iso', 'sep_beamset_sep_iso']:
           if palliative_choices[0].value == 'sep_beamset_iso':
             PF.create_additional_palliative_beamsets_prescriptions_and_beams(plan, examination, ss, region_codes, fraction_dose, nr_fractions, external, machine_name, nr_existing_beams=nr_beams, isocenter=isocenter)
           else:

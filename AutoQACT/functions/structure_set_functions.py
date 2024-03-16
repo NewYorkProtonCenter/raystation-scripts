@@ -6,26 +6,15 @@ from __future__ import division
 import math
 
 # Import system libraries:
-import clr, sys
 from connect import *
 import clr, sys, re
-# import System.Array
-# clr.AddReference("Office")
-# clr.AddReference("Microsoft.Office.Interop.Excel")
 clr.AddReference("System.Windows.Forms")
 clr.AddReference("System.Drawing")
 clr.AddReference("PresentationFramework")
-from System.Windows import *
 # Import local files:
-# import gui_functions as GUIF
-import roi as ROI
-import rois as ROIS
+from settings import rois as ROIS, margins as MARGINS, region_codes as RC
+from rt_classes import roi as ROI, margin as MARGIN
 import patient_model_functions as PMF
-import margin as MARGIN
-import margins as MARGINS
-import def_brain as DEF_BRAIN
-import region_codes as RC
-
 
 
 # Checks if a given roi takes part in a approved structure set
@@ -322,7 +311,7 @@ def find_CTVs(ss):
       and (re.search(r'tcp', roi.OfRoi.Name, re.IGNORECASE) is None)\
       and (re.search(r'\d{4}.\d{2}.\d{2}', roi.OfRoi.Name) is None):
         #re.match("\wTV_\d\d\d\d", roi.OfRoi.Name))\
-        if roi.OfRoi.Type == 'Gtv' or (roi.OfRoi.Type in ['Ptv', 'Ctv'] and re.search('\d{4}', roi.OfRoi.Name))\
+        if roi.OfRoi.Type == 'Gtv' or (roi.OfRoi.Type in ['Ptv', 'Ctv'] and re.search(r'\d{4}', roi.OfRoi.Name))\
              or (roi.OfRoi.Type == 'Ptv' and re.search(r'eval', roi.OfRoi.Name, re.IGNORECASE)):
           target.append(roi.OfRoi.Name)
   if len(target) == 0:

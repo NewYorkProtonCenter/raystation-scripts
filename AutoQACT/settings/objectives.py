@@ -2,28 +2,17 @@
 
 # Import system libraries:
 from __future__ import division
-import math
 from connect import *
-import clr, sys
-# import System.Array
-# clr.AddReference("Office")
-# clr.AddReference("Microsoft.Office.Interop.Excel")
+import clr
 clr.AddReference("System.Windows.Forms")
 clr.AddReference("System.Drawing")
 
-# from Microsoft.Office.Interop.Excel import *
-from System.Drawing import (Color, ContentAlignment, Font, FontStyle, Point)
-
 # Import local files:
-import gui_functions as GUIF
+from functions import gui_functions as GUIF, patient_model_functions as PMF, roi_functions as ROIF, objective_functions as OF, structure_set_functions as SSF
 import margins as MARGINS
-import patient_model_functions as PMF
-import rois as ROIS
-import roi as ROI
-import roi_functions as ROIF
-import objective_functions as OF
+from settings import rois as ROIS
+from rt_classes import roi as ROI
 import region_codes as RC
-import structure_set_functions as SSF
 import tolerance_doses as TOL
 
 # OAR objectives:

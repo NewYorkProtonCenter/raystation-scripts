@@ -1,8 +1,8 @@
 # encoding: utf8
 
 # Import local files:
-import patient_model_functions as PMF
-import rois as ROIS
+from functions import patient_model_functions as PMF
+from settings import rois as ROIS
 
 
 # Site class for ROI definition.
@@ -63,12 +63,12 @@ class DefSite(object):
   def create_rois(self):
     # Delete pre-existing ROIs (except those which are manually contoured) in sorted order:
     group = self.grouped_rois()
-    for key in sorted(group.iterkeys()):
+    for key in sorted(group.keys()):
       for roi in group[key]:
         PMF.delete_matching_roi_except_manually_contoured(self.pm, self.ss, roi)
     group = self.grouped_rois()
     # Create ROIs (in reverse sorted order):
-    for key in reversed(sorted(group.iterkeys())):
+    for key in reversed(sorted(group.keys())):
       for roi in group[key]:
         # Only create ROI if it doesn't already exist:
         if not PMF.has_roi(self.pm, roi.name):

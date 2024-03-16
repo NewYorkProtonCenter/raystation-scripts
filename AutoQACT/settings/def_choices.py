@@ -1,7 +1,7 @@
 # encoding: utf8
 
 # Import local files:
-import property as P
+from gui_classes import property as P
 
 # Regions:
 brain = P.Property('Brain', 'brain', next_category='scope', default = True)

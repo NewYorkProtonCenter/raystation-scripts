@@ -1,11 +1,8 @@
 # encoding: utf8
 
 # Import local files:
-import colors as COLORS
-import def_oars as DEF
-import margins as MARGINS
-import roi as ROI
-import rois as ROIS
+from settings import colors as COLORS, def_oars as DEF, margins as MARGINS, rois as ROIS
+from rt_classes import roi as ROI
 
 # Definitions script for bladder treatments.
 class DefBladder(object):

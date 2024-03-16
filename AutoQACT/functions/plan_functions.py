@@ -1,27 +1,16 @@
 # encoding: utf8
-
-# encoding: utf8
 #!/usr/bin/python
 
 # Import system libraries:
 from connect import *
-import clr, sys
-# import System.Array
-# clr.AddReference("Office")
-# clr.AddReference("Microsoft.Office.Interop.Excel")
+import clr
 clr.AddReference("System.Windows.Forms")
 clr.AddReference("System.Drawing")
 
-# from Microsoft.Office.Interop.Excel import *
-from System.Drawing import (Color, ContentAlignment, Font, FontStyle, Point)
-from System.Windows.Forms import (Application, BorderStyle, Button, CheckBox, DialogResult, Form, FormBorderStyle, Label, Panel, RadioButton, TextBox)
 # Import local files:
-import beams as BEAMS
+from settings import beams as BEAMS, objectives as OBJ, region_codes as RC
 import beam_set_functions as BSF
 import case_functions as CF
-import objectives as OBJ
-import region_codes as RC
-import roi_functions as ROIF
 import structure_set_functions as SSF
 
 # Contains a collection of plan functions.
@@ -48,7 +37,7 @@ def create_additional_palliative_beamsets_prescriptions_and_beams(plan, examinat
       if not isocenter:
         isocenter = SSF.determine_isocenter(examination, ss, region_code, 'VMAT', 'PTV' + str(i+1), external)
       # Setup beams or arcs
-      nr_beams = BEAMS.setup_beams(ss, examination, beam_set, isocenter, region_code, fraction_dose, 'VMAT', iso_index=str(i+1), beam_index=nr_existing_beams+1)
+      nr_beams = BEAMS.setup_beams(ss, examination, beam_set, isocenter, region_code, fraction_dose, 'VMAT', iso_index=i+1, beam_index=nr_existing_beams+1)
       nr_existing_beams += nr_beams
       OBJ.create_palliative_objectives_for_additional_beamsets(ss, plan, fraction_dose*nr_fractions, i)
       i += 1
@@ -76,7 +65,7 @@ def create_additional_stereotactic_beamsets_prescriptions_and_beams(plan, examin
         # Determine the point which will be our isocenter:
         isocenter = SSF.determine_isocenter(examination, ss, region_code, 'VMAT', 'PTV' + str(i+1), external)
         # Setup beams or arcs
-        nr_beams = BEAMS.setup_beams(ss, examination, beam_set, isocenter, region_code, fraction_dose, 'VMAT', iso_index=str(i+1), beam_index=nr_existing_beams+1)
+        nr_beams = BEAMS.setup_beams(ss, examination, beam_set, isocenter, region_code, fraction_dose, 'VMAT', iso_index=i+1, beam_index=nr_existing_beams+1)
         nr_existing_beams += nr_beams
         i += 1
 

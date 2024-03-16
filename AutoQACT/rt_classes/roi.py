@@ -1,7 +1,7 @@
 # encoding: utf8
 
 # Import local files:
-import margins as MARGINS
+from settings import margins as MARGINS
 
 # ROI class - used for manually defined ROIs.
 class ROI(object):

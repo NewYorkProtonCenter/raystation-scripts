@@ -1,11 +1,9 @@
 # encoding: utf8
 
 # Import local files:
-import isodose_color_tables as ISODOSES
+from settings import isodose_color_tables as ISODOSES, region_codes as RC, rois as ROIS
 import plan_functions as PF
-import region_codes as RC
 import structure_set_functions as SSF
-import rois as ROIS
 
 # Contains a collection of case functions.
 

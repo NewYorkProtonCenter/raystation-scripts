@@ -1,7 +1,7 @@
 # encoding: utf8
 
 # Import local files:
-import margin as MARGIN
+from rt_classes import margin as MARGIN
 
 # Examples:
 # MARGIN.Expansion(superior, inferior, anterior, posterior, right, left)

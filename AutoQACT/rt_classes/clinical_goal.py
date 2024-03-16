@@ -2,9 +2,8 @@
 
 
 # Import local files:
-import rois as ROIS
-import gui_functions as GUIF
-import structure_set_functions as SSF
+from settings import rois as ROIS
+from functions import gui_functions as GUIF, structure_set_functions as SSF
 
 
 # Clinical Goal class

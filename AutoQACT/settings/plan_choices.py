@@ -1,8 +1,8 @@
 # encoding: utf8
 
 # Import local files:
-import property as P
-import structure_set_functions as SSF
+from gui_classes import property as P
+from functions import structure_set_functions as SSF
 
 
 # Setup techniques:
