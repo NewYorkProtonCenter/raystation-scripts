@@ -6,7 +6,6 @@
 
 # System configuration:
 from connect import *
-import sys
 #sys.path.append("I:\\HSM - Kreftavdelingen - gammelt fellesområde\\Program\\Skript\\RayStation\\lib".decode('utf8'))
 
 # GUI framework (debugging only):
@@ -14,10 +13,8 @@ import sys
 #from System.Windows import *
 
 # Local script imports:
-import test as TEST
-import region_codes as RC
-import rois as ROIS
-#import raystation_utilities as RSU
+from ts_classes import test as TEST
+from settings import region_codes as RC, rois as ROIS
 
 # This class contains tests for the RayStation Case object:
 class TSCase(object):

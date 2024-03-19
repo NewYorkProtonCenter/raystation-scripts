@@ -3,9 +3,7 @@
 # Import local files:
 from rt_classes import clinical_goal as CG
 from functions import structure_set_functions as SSF
-import rois as ROIS
-import tolerance_doses as TOL
-import region_codes as RC
+from settings import rois as ROIS, tolerance_doses as TOL, region_codes as RC
 
 
 # Criterias:

@@ -6,7 +6,6 @@
 
 # System configuration:
 from connect import *
-import sys
 
 
 # GUI framework (debugging only):
@@ -14,9 +13,8 @@ import sys
 #from System.Windows import *
 
 # Local script imports:
-import test as TEST
-import raystation_utilities as RSU
-import region_codes as RC
+from ts_classes import test as TEST
+from settings import region_codes as RC
 
 # This class contains tests for the RayStation Optimization object:
 class TSOptimization(object):

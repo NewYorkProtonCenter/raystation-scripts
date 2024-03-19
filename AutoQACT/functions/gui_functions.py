@@ -10,9 +10,8 @@ from System.Windows.Forms import DialogResult
 
 # Import local files:
 from settings import plan_choices as PC, region_codes as RC, rois as ROIS
-import plan_functions as PF
 from gui_classes import radio_button as RB, radio_button_form as FORM, region_code_form as REGION_FORM
-import structure_set_functions as SSF
+from functions import plan_functions as PF, structure_set_functions as SSF
 
 
 # Lists of which number of fractions and fraction dose are allowed for a given region code, i.e treatment site. If the given values does not match the values in the list, an error is raised.

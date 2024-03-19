@@ -9,7 +9,7 @@ from System.Drawing import Point
 from System.Windows.Forms import (BorderStyle, Button, DialogResult, Form, FormBorderStyle, Label, Panel, TextBox)
 
 # Import local files:
-import structure_set_functions as SSF
+from functions import structure_set_functions as SSF
 
 
 # Class that sets up a fractionation dialogue.

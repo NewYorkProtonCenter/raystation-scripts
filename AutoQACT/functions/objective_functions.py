@@ -1,11 +1,9 @@
 # encoding: utf8
 
 # Import local files:
-import gui_functions as GUIF
 from rt_classes import objective_adaptation as OA
 from settings import rois as ROIS, region_codes as RC
-import structure_set_functions as SSF
-import raystation_utilities as RSU
+from functions import gui_functions as GUIF, structure_set_functions as SSF, raystation_utilities as RSU
 
 # Contains a collection of objective functions.
 

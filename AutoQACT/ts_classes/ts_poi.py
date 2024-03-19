@@ -6,7 +6,6 @@
 
 # System configuration:
 from connect import *
-import sys
 #sys.path.append("I:\\HSM - Kreftavdelingen - gammelt fellesområde\\Program\\Skript\\RayStation\\lib".decode('utf8'))
 
 # GUI framework (debugging only):
@@ -14,8 +13,7 @@ import sys
 #from System.Windows import *
 
 # Local script imports:
-import test as TEST
-import raystation_utilities as RSU
+from ts_classes import test as TEST
 
 # This class contains tests for the RayStation POI object:
 class TSPOI(object):

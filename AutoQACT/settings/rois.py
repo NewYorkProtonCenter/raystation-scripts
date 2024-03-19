@@ -1,8 +1,8 @@
 # encoding: utf8
 
 # Import local files:
-import colors as COLORS
-import margins as MARGINS
+from settings import colors as COLORS
+from settings import margins as MARGINS
 from rt_classes import roi as ROI
 
 

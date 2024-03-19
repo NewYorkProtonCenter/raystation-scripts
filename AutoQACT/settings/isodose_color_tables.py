@@ -6,7 +6,7 @@ clr.AddReference('System.Drawing')
 import System.Drawing
 
 # Import local files:
-import colors as COLORS
+from settings import colors as COLORS
 
 
 # Defines an isodose object (which contains a percentage value and a visualization color).

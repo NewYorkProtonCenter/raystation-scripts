@@ -9,9 +9,7 @@ clr.AddReference("System.Drawing")
 
 # Import local files:
 from settings import beams as BEAMS, objectives as OBJ, region_codes as RC
-import beam_set_functions as BSF
-import case_functions as CF
-import structure_set_functions as SSF
+from functions import beam_set_functions as BSF, case_functions as CF, structure_set_functions as SSF
 
 # Contains a collection of plan functions.
 

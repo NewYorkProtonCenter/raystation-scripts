@@ -2,8 +2,7 @@
 
 # Import local files:
 from settings import isodose_color_tables as ISODOSES, region_codes as RC, rois as ROIS
-import plan_functions as PF
-import structure_set_functions as SSF
+from functions import plan_functions as PF, structure_set_functions as SSF
 
 # Contains a collection of case functions.
 

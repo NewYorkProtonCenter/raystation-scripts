@@ -13,7 +13,7 @@ import math
 #from System.Windows import *
 
 # Local script imports:
-from . import test as TEST
+from . from ts_classes import test as TEST
 from functions import raystation_utilities as RSU, structure_set_functions as SSF
 from settings import rois as ROIS, region_codes as RC
 

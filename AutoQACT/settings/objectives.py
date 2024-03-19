@@ -9,11 +9,9 @@ clr.AddReference("System.Drawing")
 
 # Import local files:
 from functions import gui_functions as GUIF, patient_model_functions as PMF, roi_functions as ROIF, objective_functions as OF, structure_set_functions as SSF
-import margins as MARGINS
 from settings import rois as ROIS
 from rt_classes import roi as ROI
-import region_codes as RC
-import tolerance_doses as TOL
+from settings import margins as MARGINS, region_codes as RC, tolerance_doses as TOL
 
 # OAR objectives:
 # Brain

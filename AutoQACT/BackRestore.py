@@ -19,9 +19,10 @@ def find_TPCT_name(case, TPname, log_filename):
         # if infopl.Count == 0:
         if len(infopl) == 0:
             print('No Plans available')
-            with open(log_filename, 'a') as f:
-                f.write('\n' + 'ERROR: ' + 'No Plans available' + ', Case = ' + case.CaseName)
-                f.close()
+            # with open(log_filename, 'a') as f:
+            #     f.write('\n' + 'ERROR: ' + 'No Plans available' + ', Case = ' + case.CaseName)
+            #     f.close()
+            print('ERROR: ' + 'No Plans available' + ', Case = ' + case.CaseName)
         else:
             earlist_approved_plan = infopl[0]
             if len(infopl) > 1:#find the earlist approved plan only for now
@@ -46,9 +47,10 @@ def find_TPCT_name(case, TPname, log_filename):
             TPCT_name = case.TreatmentPlans[TPname].BeamSets[0].GetPlanningExamination().Name
         except:
             TPCT_name = ''
-    with open(log_filename, 'a') as f:
-        f.write('\n' + 'Case = ' + case.CaseName + ', Plan Name = ' + TPname + ', Exam Name = ' + TPCT_name)
-        f.close()
+    # with open(log_filename, 'a') as f:
+    #     f.write('\n' + 'Case = ' + case.CaseName + ', Plan Name = ' + TPname + ', Exam Name = ' + TPCT_name)
+    #     f.close()
+    print('Case = ' + case.CaseName + ', Plan Name = ' + TPname + ', Exam Name = ' + TPCT_name)
     return TPname, TPCT_name
 
 
@@ -118,9 +120,10 @@ def evaluate_QACT(case, TPCT_name, TPname, log_filename, RayVersion, additional_
                     else:#for 2023B
                         case.ComputeGrayLevelBasedRigidRegistration(FloatingExaminationName = examination.Name, ReferenceExaminationName = TPCT_name,
                             RegistrationName=None, UseOnlyTranslations=False, HighWeightOnBones=True, InitializeImages=True, FocusRoisNames=target_roi)
-                    with open(log_filename, 'a') as f:
-                        f.write('\n' + 'New rigid registration is created')
-                        f.close()
+                    # with open(log_filename, 'a') as f:
+                    #     f.write('\n' + 'New rigid registration is created')
+                    #     f.close()
+                    print('New rigid registration is created')
                 if Check_Rigid_Reg:
                     input('Please double check the rigid registration before continue')
 
@@ -217,10 +220,11 @@ def create_hybrid_deformable_reg_group(pm, ref_exam_name, target_exam_names, ctr
         else: #the deformable registration already exist
             print('Deformable registration from the ref exam ' + ref_exam_name + 'to ' + to_name + ' already exists')
             deformable_registration_group_names.extend(matching_groups)
-    with open(log_filename, 'a') as f:
-        # f.write('\n' + 'deform from reference exam ' + ref_exam_name + ' to target exams ' + ' to target exams '+ ' are:' + ','join(deformable_registration_group_names))
-        f.write('\n' + 'deform from reference exam ' + ref_exam_name + ' to target exams ' + ','.join(target_exam_names) + ' are:' + ','.join(deformable_registration_group_names))
-        f.close()
+    # with open(log_filename, 'a') as f:
+    #     # f.write('\n' + 'deform from reference exam ' + ref_exam_name + ' to target exams ' + ' to target exams '+ ' are:' + ','join(deformable_registration_group_names))
+    #     f.write('\n' + 'deform from reference exam ' + ref_exam_name + ' to target exams ' + ','.join(target_exam_names) + ' are:' + ','.join(deformable_registration_group_names))
+    #     f.close()
+    print('deform from reference exam ' + ref_exam_name + ' to target exams ' + ','.join(target_exam_names) + ' are:' + ','.join(deformable_registration_group_names))
     # if the deformable registration already exist, return ''
     return deformable_registration_group_names
 
@@ -242,14 +246,14 @@ def calculateDoseOnAdditionalSetFixingHolesIfNeeded(case, TPname, imageSetName, 
                                 Examinations = [imageSetName], Fractions=None, ComputeBeamDoses = True, AllowGridExpansion = True)
 
                 print(f'Calculated dose on case {case.CaseName}, plan {plan.Name}, beamset {beamset.DicomPlanLabel} for generated exams {imageSetName}')
-                with open(log_filename, 'a') as f:
-                    f.write(f'\nDose calculated on case {case.CaseName}, plan {plan.Name}, beamset {beamset.DicomPlanLabel} for generated exams {imageSetName}')
-                    f.close()
+                # with open(log_filename, 'a') as f:
+                #     f.write(f'\nDose calculated on case {case.CaseName}, plan {plan.Name}, beamset {beamset.DicomPlanLabel} for generated exams {imageSetName}')
+                #     f.close()
     except:
         print(f'*** Calculate dose on case {case.CaseName}, plan {plan.Name}, beamset {beamset.DicomPlanLabel} for generated exams {imageSetName} failed')
-        with open(log_filename, 'a') as f:
-            f.write(f'\n*** Calculate dose on case {case.CaseName}, plan {plan.Name}, beamset {beamset.DicomPlanLabel} for generated exams {imageSetName} failed')
-            f.close()
+        # with open(log_filename, 'a') as f:
+        #     f.write(f'\n*** Calculate dose on case {case.CaseName}, plan {plan.Name}, beamset {beamset.DicomPlanLabel} for generated exams {imageSetName} failed')
+        #     f.close()
 
 def crop_external(case, exam_name):
     exam = case.Examinations[exam_name]

@@ -14,7 +14,7 @@ clr.AddReference("PresentationFramework")
 # Import local files:
 from settings import rois as ROIS, margins as MARGINS, region_codes as RC
 from rt_classes import roi as ROI, margin as MARGIN
-import patient_model_functions as PMF
+from functions import patient_model_functions as PMF
 
 
 # Checks if a given roi takes part in a approved structure set

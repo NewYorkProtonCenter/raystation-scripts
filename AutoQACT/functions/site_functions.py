@@ -3,7 +3,7 @@
 # Import local files:
 from settings import region_codes as RC, clinical_goals as CGS, objectives as OBJ, rois as ROIS
 from rt_classes import rt_site as SITE
-import patient_model_functions as PMF
+from functions import patient_model_functions as PMF
 
 
 # Example:

@@ -9,14 +9,17 @@
 # Email:   jun.zhou@emory.edu
 #          jzhou995@gmail.com
 
-from connect import get_current
-from System.Windows import MessageBox, await_user_input
+from connect import get_current, await_user_input
+from System.Windows import MessageBox
 import sys, time, os
 from datetime import datetime, timedelta
 import platform
 from tkinter import Tk, ttk, IntVar, Checkbutton, Label, Button, StringVar, W
 from time import sleep
+from pathlib import Path
 
+current_directory = Path('W:/Users/Milo/raystation-scripts/AutoQACT')
+sys.path.append(str(current_directory))
 from BackRestore import *
 
 error_message_header = "Missing information / setup"
@@ -30,9 +33,12 @@ ui = get_current('ui')
 RayVersion = int(ui.GetApplicationVersion().split('.')[0])
 station_name = 'StationName' if RayVersion < 11 else 'Station Name'
 
-log_filename = r'\\euh\\ehc\\shares\\RadOnc\\Documents\\RO PHYSICS\\ProtonPhysics\\Scripts_DoNotMove\\FinalReviewsOutput\\Process logfile1.txt'
+# log_filename = r'\\euh\\ehc\\shares\\RadOnc\\Documents\\RO PHYSICS\\ProtonPhysics\\Scripts_DoNotMove\\FinalReviewsOutput\\Process logfile1.txt'
+# write_directory = Path('C:/Users/mvermeulen/test')
+log_filename = current_directory / 'logs'
 
-root_dir = r"\\prd-ray-sql1\DicomImageStorage"
+# root_dir = r"\\prd-ray-sql1\DicomImageStorage"
+root_dir = write_directory / 'img'
 
 current_patient = True
 
@@ -151,9 +157,10 @@ def import_QACT_entrance(current_patient, csv_file_name, delta_day): #current_pa
             sys.exit()
 
         pid = patient.PatientID
-        with open(log_filename, 'a') as f:
-            f.write('\n' + ' ID = ' + pid + ' Name = ' + patient.Name + 'Case = ' + case.CaseName)
-            f.close()
+        # with open(log_filename, 'a') as f:
+        #     f.write('\n' + ' ID = ' + pid + ' Name = ' + patient.Name + 'Case = ' + case.CaseName)
+        #     f.close()
+        print(' ID = ' + pid + ' Name = ' + patient.Name + 'Case = ' + case.CaseName)
         try:
             current_plan_name = get_current('Plan').Name
 
@@ -176,12 +183,14 @@ def import_QACT_entrance(current_patient, csv_file_name, delta_day): #current_pa
         print("Done QACT analysis, time elapsed: " + str(round(time2-time1, 1)) + " seconds.")
         # patient.Save()
 
-with open(log_filename, 'a') as f:
-    f.write('\n' + 'Start processing patients at ' + str(datetime.today()))
-    f.close()
+# with open(log_filename, 'a') as f:
+#     f.write('\n' + 'Start processing patients at ' + str(datetime.today()))
+#     f.close()
+print('Start processing patients at ' + str(datetime.today()))
 
 import_QACT_entrance(current_patient, csv_name, DAYs_Earlier) #True: current patient, false: csv file
 
-with open(log_filename, 'a') as f:
-    f.write('\n' + 'End processing patients at ' + str(datetime.today()))
-    f.close()
+# with open(log_filename, 'a') as f:
+#     f.write('\n' + 'End processing patients at ' + str(datetime.today()))
+#     f.close()
+print('End processing patients at ' + str(datetime.today()))

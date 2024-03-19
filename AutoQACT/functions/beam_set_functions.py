@@ -4,10 +4,7 @@
 import math
 
 # Import local files:
-import beam_functions as BF
-import general_functions as GF
-import plan_functions as PF
-import structure_set_functions as SSF
+from functions import beam_functions as BF, general_functions as GF, plan_functions as PF, structure_set_functions as SSF
 from settings import colors as COLORS, region_codes as RC
 
 # Contains a collection of beam set functions.

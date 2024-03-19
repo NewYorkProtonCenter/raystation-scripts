@@ -6,7 +6,6 @@
 
 # System configuration:
 from connect import *
-import sys
 import re
 #sys.path.append("I:\\HSM - Kreftavdelingen - gammelt fellesområde\\Program\\Skript\\RayStation\\lib".decode('utf8'))
 
@@ -15,8 +14,8 @@ import re
 #from System.Windows import *
 
 # Local script imports:
-import test as TEST
-import beam_set_label as BSL
+from ts_classes import test as TEST
+from rt_classes import beam_set_label as BSL
 #import raystation_utilities as RSU
 
 # This class contains tests for the RayStation Label object:

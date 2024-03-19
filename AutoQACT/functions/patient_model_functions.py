@@ -4,7 +4,7 @@ from __future__ import division
 # Import local files:
 from rt_classes import roi as ROI
 from settings import rois as ROIS, colors as COLORS
-import structure_set_functions as SSF
+from functions import structure_set_functions as SSF
 
 #JZ to import patient db. need modify in the future
 from connect import get_current

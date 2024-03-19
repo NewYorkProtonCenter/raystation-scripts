@@ -1,7 +1,7 @@
 # encoding: utf8
 
 # Import local files:
-import rois as ROIS
+from settings import rois as ROIS
 
 
 #Brain

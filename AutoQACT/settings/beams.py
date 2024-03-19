@@ -2,8 +2,7 @@
 
 # Import local files:
 from functions import beam_set_functions as BSF, case_functions as CF, structure_set_functions as SSF
-import region_codes as RC
-import rois as ROIS
+from settings import region_codes as RC, rois as ROIS
 
 
 # Set up beams or arcs, based on region code (i.e. treatment site).

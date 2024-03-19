@@ -6,7 +6,6 @@
 
 # System configuration:
 from connect import *
-import sys
 #sys.path.append("I:\\HSM - Kreftavdelingen - gammelt fellesområde\\Program\\Skript\\RayStation\\lib".decode('utf8'))
 
 # GUI framework (debugging only):
@@ -14,10 +13,9 @@ import sys
 #from System.Windows import *
 
 # Local script imports:
-import test as TEST
-import raystation_utilities as RSU
-import structure_set_functions as SSF
-import rois as ROIS
+from ts_classes import test as TEST
+from functions import raystation_utilities as RSU, structure_set_functions as SSF
+from settings import rois as ROIS
 
 # This class contains tests for the RayStation Prescription object:
 class TSPrescription(object):
