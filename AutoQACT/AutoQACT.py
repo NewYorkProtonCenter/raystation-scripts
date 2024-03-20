@@ -9,45 +9,52 @@
 # Email:   jun.zhou@emory.edu
 #          jzhou995@gmail.com
 
+# type: ignore -- The connect library is supplied by Raystation.
 from connect import get_current, await_user_input
-from System.Windows import MessageBox
 import sys, time, os
 from datetime import datetime, timedelta
 import platform
 from tkinter import Tk, ttk, IntVar, Checkbutton, Label, Button, StringVar, W
 from time import sleep
 from pathlib import Path
+import logging
 
 current_directory = Path('W:/Users/Milo/raystation-scripts/AutoQACT')
 sys.path.append(str(current_directory))
-from BackRestore import *
+from BackRestore import find_TPCT_name, evaluate_QACT
 
-error_message_header = "Missing information / setup"
+# Set up a logger and handlers.
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+
+stream_handler = logging.StreamHandler()
+stream_handler.setLevel(logging.DEBUG)
+stream_handler.setFormatter(logging.Formatter('%(levelname)s - %(message)s'))
+
+file_handler = logging.FileHandler(current_directory / 'log.txt')
+file_handler.setLevel(logging.INFO)
+file_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
+
+logger.addHandler(stream_handler)
+logger.addHandler(file_handler)
 
 if platform.python_implementation() == "IronPython":
     print("please use CPython 3.6")
     exit(0)
-print (sys.version)
+print(sys.version)
 
 ui = get_current('ui')
 RayVersion = int(ui.GetApplicationVersion().split('.')[0])
-station_name = 'StationName' if RayVersion < 11 else 'Station Name'
 
-# log_filename = r'\\euh\\ehc\\shares\\RadOnc\\Documents\\RO PHYSICS\\ProtonPhysics\\Scripts_DoNotMove\\FinalReviewsOutput\\Process logfile1.txt'
-# write_directory = Path('C:/Users/mvermeulen/test')
-log_filename = current_directory / 'logs'
+log_filename = current_directory / 'logs.txt'
 
 # root_dir = r"\\prd-ray-sql1\DicomImageStorage"
-root_dir = write_directory / 'img'
+root_dir = current_directory / 'img'
 
-current_patient = True
+days_earlier = 0  #import the data that exported * days earlier. As all system use date in the folder name when export Dicom images. Default should be 0, means today
 
-DAYs_Earlier = 0    #import the data that exported * days earlier. As all system use date in the folder name when export Dicom images. Default should be 0, means today
-
-additional_CTV = [] #don't use [''], since when extend a list with [''], it add the '' to the end. While extend '' won't.
-# additional_CTV = ['CTV45pp_NEW', 'CTV37.5pp_NEW', 'GTV_NEW']
-
-additional_control_roi = ['']
+additional_CTV = []
+additional_control_roi = []
 
 #to exclude these ROIs in the override_roi
 override_ROIs_excluded = []
@@ -58,7 +65,7 @@ SYNGOVIA_Import_AEname = '__EHCSYNGOVIA__'  #Transferred from Aria
 QACT_Import_AEname = '__AN_CTAWP83695__'
 
 class GUI:
-    def __init__(self, pid, patient_db, patient, caseName, delta_day):
+    def __init__(self, pid: int, patient_db, patient, caseName: str, delta_day: int):
     # today=datetime.today()
         today=datetime.today()-timedelta(days=delta_day)#get yesterday or before
         AEname_list = [SYNGOVIA_Import_AEname, QACT_Import_AEname]
@@ -68,7 +75,7 @@ class GUI:
         self.caseName = caseName
 
         for AEname in AEname_list:
-            current_path = os.path.join(root_dir, today.strftime('%Y%m%d') + AEname + pid)  #AEname is in the folder name that indicate where the images coming from
+            current_path = os.path.join(root_dir, today.strftime('%Y%m%d') + AEname + str(pid))  #AEname is in the folder name that indicate where the images coming from
             self.path.append (current_path)
             if os.path.exists(current_path):
                 query = patient_db.QueryPatientsFromPath(Path=current_path, SearchCriterias = {'PatientID' : pid})
@@ -111,7 +118,7 @@ class GUI:
         self.label_status.grid(row=7,column=1,columnspan=4,sticky=W)
         self.top.mainloop()
 
-    def start_generate(self,event):
+    def start_generate(self, event):
         if len(self.images_combobox.get())==0:
             self.status.set('Please choose series to import')
         else:
@@ -125,72 +132,41 @@ class GUI:
                     # raise Exception('Could not import patient: {0}'.format(exception))
         sleep(1)
         self.top.destroy()
-    def status_text(self,event,invar):
-        if invar=='started':
-            self.status.set('Import QACT images, please wait')
 
-def import_QACT_entrance(current_patient, csv_file_name, delta_day): #current_patient: true or false, if false, get patients in the csv_file
+    def status_text(self, event, invar):
+        if invar=='started':
+            self.status.set(f'Import QACT images for event {event}, please wait')
+
+def import_QACT_entrance(delta_day: int) -> None:
     #use current patient and current case
     TPCT_name = ''
     patient_db = get_current('PatientDB')
-    date_format = "%m/%d/%y"
-    today=datetime.today()
-    current_patient = True
+    patient = get_current("Patient")
+    case = get_current("Case")
 
-    if current_patient:
-        patient = None
-        try:
-            patient = get_current("Patient")
-        except Exception as e:
-            MessageBox.Show("No patient loaded.",error_message_header)
-            sys.exit()
+    pid = patient.PatientID
 
-        #
-        # Check that a case is loaded
-        # In case no, the script will terminate
-        #
-        case = None
-        try:
-            case = get_current("Case")
-        except Exception as e:
-            MessageBox.Show("No case active.",error_message_header)
-            sys.exit()
+    logger.info(' ID = ' + pid + ' Name = ' + patient.Name + 'Case = ' + case.CaseName)
 
-        pid = patient.PatientID
-        # with open(log_filename, 'a') as f:
-        #     f.write('\n' + ' ID = ' + pid + ' Name = ' + patient.Name + 'Case = ' + case.CaseName)
-        #     f.close()
-        print(' ID = ' + pid + ' Name = ' + patient.Name + 'Case = ' + case.CaseName)
-        try:
-            current_plan_name = get_current('Plan').Name
+    try:
+        current_plan_name = get_current('Plan').Name
+    except:
+        await_user_input('Please choose the plan you want to evaluate on. Continue')
+        current_plan_name = get_current('Plan').Name
 
-        except:
-            await_user_input('Please choose the plan you want to evaluate on. Continue')
-            current_plan_name = get_current('Plan').Name
+    TPname, TPCT_name = find_TPCT_name(case, current_plan_name, logger)
 
-        TPname, TPCT_name = find_TPCT_name(case, current_plan_name, log_filename)
+    start_time = time.time()
+    logger.debug('Start processing patient ' + pid + ' at ' + str(datetime.today()))
 
+    myGUI = GUI(pid, patient_db, patient, case.CaseName, delta_day)
 
-        time1 = time.time()
-        print ('Start processing patient ' + pid + ' at ' + str(datetime.today()))
+    if TPCT_name != '':
+        evaluate_QACT(case, TPCT_name, TPname, log_filename, RayVersion, additional_CTV, additional_control_roi, override_ROIs_excluded, myGUI.var.get())#the actural plan name is the copy one with the new machine
 
-        myGUI = GUI(pid, patient_db, patient, case.CaseName, delta_day)
+    logger.debug("Done QACT analysis, time elapsed: " + str(round(time.time()-start_time, 1)) + " seconds.")
+    # patient.Save()
 
-        if TPCT_name != '':
-            evaluate_QACT(case, TPCT_name, TPname, log_filename, RayVersion, additional_CTV, additional_control_roi, override_ROIs_excluded, myGUI.var.get())#the actural plan name is the copy one with the new machine
-
-        time2 = time.time()
-        print("Done QACT analysis, time elapsed: " + str(round(time2-time1, 1)) + " seconds.")
-        # patient.Save()
-
-# with open(log_filename, 'a') as f:
-#     f.write('\n' + 'Start processing patients at ' + str(datetime.today()))
-#     f.close()
-print('Start processing patients at ' + str(datetime.today()))
-
-import_QACT_entrance(current_patient, csv_name, DAYs_Earlier) #True: current patient, false: csv file
-
-# with open(log_filename, 'a') as f:
-#     f.write('\n' + 'End processing patients at ' + str(datetime.today()))
-#     f.close()
-print('End processing patients at ' + str(datetime.today()))
+logger.info('Start processing patients at ' + str(datetime.today()))
+import_QACT_entrance(days_earlier)
+logger.info('End processing patients at ' + str(datetime.today()))
