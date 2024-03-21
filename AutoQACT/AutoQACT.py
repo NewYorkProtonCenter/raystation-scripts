@@ -9,7 +9,6 @@
 # Email:   jun.zhou@emory.edu
 #          jzhou995@gmail.com
 
-from BackRestore import find_TPCT_name, evaluate_QACT
 import sys
 import os
 from datetime import datetime, timedelta
@@ -22,7 +21,9 @@ import logging
 from connect import get_current, await_user_input  # type: ignore -- The connect library is supplied by Raystation
 
 current_directory = Path('W:/Users/Milo/raystation-scripts/AutoQACT')
-sys.path.append(str(current_directory))
+sys.path.append(str(current_directory.resolve()))
+sys.path.append(str(current_directory.parent.resolve()))
+from BackRestore import find_TPCT_name, evaluate_QACT
 
 # Set up a logger and handlers.
 logger = logging.getLogger(__name__)
