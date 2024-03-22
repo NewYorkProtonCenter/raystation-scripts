@@ -1,12 +1,5 @@
 # encoding: utf8
 
-# Import system libraries:
-from __future__ import division
-from connect import *
-import clr
-clr.AddReference("System.Windows.Forms")
-clr.AddReference("System.Drawing")
-
 # Import local files:
 from functions import gui_functions as GUIF, patient_model_functions as PMF, roi_functions as ROIF, objective_functions as OF, structure_set_functions as SSF
 from settings import rois as ROIS

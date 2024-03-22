@@ -1,12 +1,6 @@
 # encoding: utf8
 #!/usr/bin/python
 
-# Import system libraries:
-from connect import *
-import clr
-clr.AddReference("System.Windows.Forms")
-clr.AddReference("System.Drawing")
-
 # Import local files:
 from settings import beams as BEAMS, objectives as OBJ, region_codes as RC
 from functions import beam_set_functions as BSF, case_functions as CF, structure_set_functions as SSF
@@ -14,7 +8,7 @@ from functions import beam_set_functions as BSF, case_functions as CF, structure
 # Contains a collection of plan functions.
 
 # Creates additional palliative beamsets (if multiple targets exists).
-def create_additional_palliative_beamsets_prescriptions_and_beams(plan, examination, ss, region_codes, fraction_dose, nr_fractions, external, machine_name, nr_existing_beams=1, isocenter=False):
+def create_additional_palliative_beamsets_prescriptions_and_beams(plan, examination, ss, region_codes, fraction_dose, nr_fractions, external, machine_name, nr_existing_beams=1, isocenter=None):
   nr_targets = SSF.determine_nr_of_indexed_ptvs(ss)
   i = 1
   if nr_targets > 1:

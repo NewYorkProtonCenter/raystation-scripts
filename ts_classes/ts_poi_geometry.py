@@ -5,7 +5,6 @@
 # Verified for RayStation 6.0.
 
 # System configuration:
-from connect import *
 import sys
 #sys.path.append("I:\\HSM - Kreftavdelingen - gammelt fellesområde\\Program\\Skript\\RayStation\\lib".decode('utf8'))
 
@@ -35,6 +34,8 @@ class TSPOIGeometry(object):
   # Tests for coordinate definition.
   def is_defined_test(self):
     t = TEST.Test("Skal ha definerte koordinater", True, self.coordinates)
+    if not self.ts_structure_set:
+      return t.fail()
     # Run test if this structure set corresponds to the examination used for the treatment plan:
     # (FIXME: This may not be correct for mamma gating)
     if self.ts_structure_set.structure_set == self.ts_structure_set.ts_case.ts_plan.plan.GetStructureSet():
@@ -47,6 +48,8 @@ class TSPOIGeometry(object):
   # Tests for coordinate definition.
   def is_not_zero_test(self):
     t = TEST.Test("Skal ikke ha koordinater i punktet: 0,0,0", True, self.coordinates)
+    if not self.ts_structure_set:
+      return t.fail()
     # Run test if this structure set corresponds to the examination used for the treatment plan:
     # (FIXME: This may not be correct for mamma gating)
     if self.ts_structure_set.structure_set == self.ts_structure_set.ts_case.ts_plan.plan.GetStructureSet():

@@ -5,7 +5,6 @@
 # Verified for RayStation 6.0.
 
 # System configuration:
-from connect import *
 import re
 #sys.path.append("I:\\HSM - Kreftavdelingen - gammelt fellesområde\\Program\\Skript\\RayStation\\lib".decode('utf8'))
 
@@ -83,9 +82,9 @@ class TSLabel(object):
     t = TEST.Test("Midterste del skal inneholde start- og slutt-doser (eks '342V:70-78:4')", True, self.param)
     if len(self.label.parts) == 3:
       if len(self.label.middle_parts) == 2:
-        if re.match("^\d+\.\d+$", self.label.start_dose_str) is None and not self.label.start_dose_str.isdigit():
+        if re.match(r"^\d+\.\d+$", self.label.start_dose_str) is None and not self.label.start_dose_str.isdigit():
           return t.fail(self.label.start_dose_str)
-        elif re.match("^\d+\.\d+$", self.label.end_dose_str) is None and not self.label.end_dose_str.isdigit():
+        elif re.match(r"^\d+\.\d+$", self.label.end_dose_str) is None and not self.label.end_dose_str.isdigit():
           return t.fail(self.label.end_dose_str)
         else:
           return t.succeed()

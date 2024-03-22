@@ -1,10 +1,10 @@
 # Import system libraries:
 import clr
-clr.AddReference("System.Windows.Forms")
-clr.AddReference("System.Drawing")
+clr.AddReference("System.Windows.Forms")  # type: ignore
+clr.AddReference("System.Drawing")  # type: ignore
 
-from System.Drawing import Point
-from System.Windows.Forms import (BorderStyle, Button, CheckBox, DialogResult, Form, FormBorderStyle, Label, Panel, CheckBox)
+from System.Drawing import Point  # type: ignore
+from System.Windows.Forms import (BorderStyle, Button, CheckBox, DialogResult, Form, FormBorderStyle, Label, Panel, CheckBox)  # type: ignore
 
 
 # Class that sets up a generic radio button dialogue.
@@ -42,7 +42,7 @@ class CheckBoxForm(Form):
         panel = Panel()
         panel.AutoSize = True
         panel.Location = Point(x, y)
-        panel.BorderStyle = BorderStyle.None
+        panel.BorderStyle = BorderStyle.None  # type: ignore
         return panel
 
 

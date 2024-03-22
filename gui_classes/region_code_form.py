@@ -2,11 +2,11 @@
 
 # Import system libraries:
 import clr
-clr.AddReference("System.Windows.Forms")
-clr.AddReference("System.Drawing")
+clr.AddReference("System.Windows.Forms")  # type: ignore
+clr.AddReference("System.Drawing")  # type: ignore
 
-from System.Drawing import Point
-from System.Windows.Forms import (BorderStyle, Button, DialogResult, Form, FormBorderStyle, Label, Panel, TextBox)
+from System.Drawing import Point  # type: ignore
+from System.Windows.Forms import (BorderStyle, Button, DialogResult, Form, FormBorderStyle, Label, Panel, TextBox)  # type: ignore
 
 # Import local files:
 from functions import structure_set_functions as SSF
@@ -48,7 +48,7 @@ class RegionCodeForm(Form):
         panel = Panel()
         panel.AutoSize = True
         panel.Location = Point(x, y)
-        panel.BorderStyle = BorderStyle.None
+        panel.BorderStyle = BorderStyle.None  # type: ignore
         return panel
 
 

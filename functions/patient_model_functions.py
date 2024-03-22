@@ -7,7 +7,7 @@ from settings import rois as ROIS, colors as COLORS
 from functions import structure_set_functions as SSF
 
 #JZ to import patient db. need modify in the future
-from connect import get_current
+from connect import get_current  # type: ignore - The connect library is supplied by Raystation
 
 
 # Creates an algebra roi from a ROIAlgebra object.
@@ -48,32 +48,10 @@ def create_couch(pm, examination):
     if pm_roi.Name == ROIS.couch.name:
       pm_roi.DeleteRoi()
       break
-  #JZ: old verion, not working in Raystation 9A
-  # pm.CreateStructuresFromTemplate(
-  #   SourceTemplateName="Bordtopp tykk",
-  #   SourceExaminationName= "CT 1",
-  #   SourceRoiNames=[ROIS.couch.name],
-  #   SourcePoiNames=[],
-  #   AssociateStructuresByName=False,
-  #   TargetExamination=examination,
-  #   InitializationOption="AlignImageCenters"
-  # )
-  # db = get_current("PatientDB")
-  # pm.CreateStructuresFromTemplate(
-  #   SourceTemplate=db.TemplatePatientModels['ProBeamBase+OrfitLong'],
-  #   SourceExaminationName= "Long 2",
-  #   SourceRoiNames=[r"BaseInner", r"BaseOuter", r"LongCup", r"LongNotch"],
-  #   SourcePoiNames=[],
-  #   AssociateStructuresByName=False,
-  #   TargetExamination=examination,
-  #   InitializationOption="AlignImageCenters"
-  # )
   case = get_current("Case")
   examination = get_current("Examination")
   db = get_current("PatientDB")
   case.PatientModel.CreateStructuresFromTemplate(SourceTemplate=db.LoadTemplatePatientModel(templateName = 'ProBeamBase+OrfitLong', lockMode = 'Read'), SourceExaminationName=r"Long 2", SourceRoiNames=[r"BaseInner", r"BaseOuter", r"LongCup", r"LongNotch"], SourcePoiNames=[], AssociateStructuresByName=True, TargetExamination=examination, InitializationOption="AlignImageCenters")
-
-#case.PatientModel.CreateStructuresFromTemplate(SourceTemplate=db.TemplatePatientModels['ProBeamBase+OrfitLong'], SourceExaminationName=r"Long 2", SourceRoiNames=[r"BaseInner", r"BaseOuter", r"LongCup", r"LongNotch"], SourcePoiNames=[], AssociateStructuresByName=True, TargetExamination=examination, InitializationOption="AlignImageCenters")
 
 # Creates an empty roi from a roi object
 def create_empty_roi(pm, roi):

@@ -8,6 +8,9 @@
 #MessageBox.Show(value, 'DEBUG', MessageBoxButton.OK, MessageBoxImage.Information)
 
 # Formats a string for output.
+from typing import Any
+
+
 def f(str):
   if str:
     #return str.decode('utf8', 'replace')
@@ -22,7 +25,7 @@ def f(str):
 class Test(object):
   def __init__(self, text, expected, parent):
     self.text = text
-    self.expected = expected
+    self.expected: Any = expected
     self.parent = parent
     if parent:
       parent.add_test(self)
@@ -30,7 +33,7 @@ class Test(object):
     self.failed = None
     self.found = None
 
-  def fail(self, found=False):
+  def fail(self, found: Any=False):
     self.run = True
     self.failed = True
     self.found = found

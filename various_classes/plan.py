@@ -2,11 +2,10 @@
 #!/usr/bin/python
 
 # Import system libraries:
-from connect import get_current
+from connect import get_current  # type: ignore
 import clr, sys
-clr.AddReference("System.Windows.Forms")
-clr.AddReference("System.Drawing")
-from System.Windows.Forms import DialogResult
+clr.AddReference("System.Windows.Forms")  # type: ignore
+from System.Windows.Forms import DialogResult  # type: ignore
 
 
 # Import local files:
@@ -46,6 +45,8 @@ class Plan(object):
 
     # Extract information from the users's selections in the GUI:
     if form.DialogResult == DialogResult.OK:
+      if not form.SelectedNumberOfFractions or not form.SelectedFractionDose or not form.SelectedRegionCode or not form.SelectedPlannerInitials:
+        raise ValueError(f'Form {form} does not contain the required fields to continue')
       nr_fractions = int(form.SelectedNumberOfFractions)
       fraction_dose = float(form.SelectedFractionDose)
       region_code = int(form.SelectedRegionCode)
@@ -240,7 +241,7 @@ class Plan(object):
 
 
       # Adjust OAR settings and run further optimizations, if indicated:
-      if opt == 'oar':
+      if site and opt == 'oar':
         OBJF.adapt_optimization_oar(ss, plan, site.oar_objectives, region_code)
         CF.load_plan(case, plan)
 

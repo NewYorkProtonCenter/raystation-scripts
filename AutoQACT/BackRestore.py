@@ -6,6 +6,8 @@
 from functions import patient_model_functions as PMF, structure_set_functions as SSF
 from logging import Logger
 from typing import Tuple
+from connect import *  # type: ignore
+import statetree  # type: ignore
 
 
 def find_TPCT_name(case, TPname: str, logger: Logger) -> Tuple[str, str]:
@@ -48,6 +50,7 @@ def evaluate_QACT(case, TPCT_name, TPname, logger, RayVersion, additional_CTV, a
     control_roi = []
     target_roi = []
     target_roi = SSF.find_CTVs(case.PatientModel.StructureSets[TPCT_name])
+
     for ctv in additional_CTV:
         if ctv in target_roi:
             continue
@@ -66,7 +69,7 @@ def evaluate_QACT(case, TPCT_name, TPname, logger, RayVersion, additional_CTV, a
     QACT_images = []
     for examination in case.Examinations:
         # if examination.Name.find('CBCT') == -1: #new CBCT scan
-        if examination.Name.startswith('CT'):  # new CBCT scan
+        if examination.Name.startswith('CBCT'):  # new CBCT scan
             try:
                 station = examination.GetStoredDicomTagValueForVerification(Group=0x0008, Element=0x1010)
             except:
@@ -118,7 +121,7 @@ def evaluate_QACT(case, TPCT_name, TPname, logger, RayVersion, additional_CTV, a
     # deformably to cCBCT1. These ROSs will be used for dosimetric evaluation on the images.
     # assume each CBCT has a newly created cCBCT1
 
-    for i, qact_name in enumerate(QACT_images):
+    for qact_name in QACT_images:
         # check if name has QACT
         if qact_name.find('QACT') == -1:
             continue

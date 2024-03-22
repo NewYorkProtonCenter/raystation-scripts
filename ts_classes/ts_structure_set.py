@@ -5,7 +5,7 @@
 # Verified for RayStation 6.0.
 
 # System configuration:
-from connect import *
+from connect import ptv_box  # type: ignore
 #sys.path.append("I:\\HSM - Kreftavdelingen - gammelt fellesområde\\Program\\Skript\\RayStation\\lib".decode('utf8'))
 
 # GUI framework (debugging only):
@@ -51,6 +51,8 @@ class TSStructureSet(object):
   # Tests if breast patients having a boost of 2 Gy x 8 has Clips/Markers defined
   def breast_seeds_test(self):
     t = TEST.Test("Mammae-pasienter som skal ha ungdomsboost skal ha " + ROIS.clips.name + " definert.", True, self.geometry)
+    if not self.ts_case:
+      return t.fail()
     if self.structure_set == self.ts_case.ts_plan.plan.GetStructureSet():
       if self.ts_case.ts_plan.ts_beam_sets[0].ts_label.label.region:
         if self.ts_case.ts_plan.ts_beam_sets[0].ts_label.label.region in RC.breast_codes:
@@ -69,6 +71,8 @@ class TSStructureSet(object):
   # Skips the test for stereotactic brain plans, where external is used to define the couch instead.
   def couch_test(self):
     t = TEST.Test("Struktursettet må ha definert en bordtopp-ROI (Couch)", True, self.couch)
+    if not self.ts_case:
+      return t.fail()
     # Run test if this structure set corresponds to the examination used for the treatment plan:
     if self.structure_set == self.ts_case.ts_plan.plan.GetStructureSet():
       match = False
@@ -87,6 +91,8 @@ class TSStructureSet(object):
   # Tests if the couch top is placed close to the patient
   def couch_close_to_patient_test(self):
     t = TEST.Test("Bordtopp-ROI (Couch) skal ligge inntil external", True, self.couch)
+    if not self.ts_case:
+      return t.fail()
     if self.structure_set == self.ts_case.ts_plan.plan.GetStructureSet():
       if self.ts_case.ts_plan.ts_beam_sets[0].ts_label.label.technique:
         if self.ts_case.ts_plan.ts_beam_sets[0].ts_label.label.technique.upper() != 'S' and self.ts_case.ts_plan.ts_beam_sets[0].ts_label.label.region not in RC.brain_codes:
@@ -104,6 +110,8 @@ class TSStructureSet(object):
   # Tests for presence of an external
   def external_test(self):
     t = TEST.Test("Struktursettet må ha definert en ytterkontur (navn og type skal være: External)", True, self.external)
+    if not self.ts_case:
+      return t.fail()
     # Run test if this structure set corresponds to the examination used for the treatment plan:
     if self.structure_set == self.ts_case.ts_plan.plan.GetStructureSet():
       match = False
@@ -118,6 +126,8 @@ class TSStructureSet(object):
   # Tests if the CT-images are cropped close to external.
   def external_bounding_test(self):
     t = TEST.Test("External ligger helt på yttergrensen av bildeopptaket. Dette kan tyde på at CT-bildene er beskjært uheldig, og at deler av pasienten mangler. Dersom denne beskjæringen forekommer i nærheten av målvolumet, vil det resultere i feil doseberegning.", True, self.external_bounding)
+    if not self.ts_case:
+      return t.fail()
     # Run test if this structure set corresponds to the examination used for the treatment plan:
     if self.structure_set == self.ts_case.ts_plan.plan.GetStructureSet():
       has_external_at_bounding_box = False
@@ -147,6 +157,8 @@ class TSStructureSet(object):
   # Tests if the CT-images are cropped close to external, in the same area as there is a target volume.
   def external_ptv_bounding_test(self):
     t = TEST.Test("External ligger helt på yttergrensen av bildeopptaket. Dette kan tyde på at CT-bildene er beskjært uheldig, og at deler av pasienten mangler. Dersom denne beskjæringen forekommer i nærheten av målvolumet, vil det resultere i feil doseberegning.", True, self.external_bounding)
+    if not self.ts_case:
+      return t.fail()
     # Run test if this structure set corresponds to the examination used for the treatment plan:
     #t.expected = 0
     match = False
@@ -175,6 +187,8 @@ class TSStructureSet(object):
   # Tests for presence of localization point.
   def localization_point_test(self):
     t = TEST.Test("Skal inneholde et referansepunkt (Localization Point)", True, self.localization_point)
+    if not self.ts_case:
+      return t.fail()
     # Run test if this structure set corresponds to the examination used for the treatment plan:
     # (FIXME: This may not be correct for mamma gating)
     if self.structure_set == self.ts_case.ts_plan.plan.GetStructureSet():
@@ -190,6 +204,8 @@ class TSStructureSet(object):
   # Tests if there is a ROI called 'Prosthesis' and if the material is Titanium.
   def prosthesis_titanium_test(self):
     t = TEST.Test("Hvis proteser er til stedet, skal disse hete " + ROIS.prosthesis.name + ", " + ROIS.prosthesis_r.name + " eller " + ROIS.prosthesis_l.name + " og skal være satt til 'Titanium'", True, self.geometry)
+    if not self.ts_case:
+      return t.fail()
     # Run test if this structure set corresponds to the examination used for the treatment plan:
     if self.structure_set == self.ts_case.ts_plan.plan.GetStructureSet():
       match = False
@@ -215,6 +231,8 @@ class TSStructureSet(object):
   # Tests if the structure set has a dose region or a target volume
   def dose_region_test(self):
     t = TEST.Test("Struktursett som mangler målvolum skal ha en 'Dose region' ROI, som brukes til volum-normering, eller hvis punkt-normert, som veiledningsvolum til XVI (90% isodose).", True, self.geometry)
+    if not self.ts_case:
+      return t.fail()
     # Run test if this structure set corresponds to the examination used for the treatment plan:
     if self.structure_set == self.ts_case.ts_plan.plan.GetStructureSet():
       match = False
@@ -230,6 +248,8 @@ class TSStructureSet(object):
   # Tests if PTV's are derived
   def ptv_derived_test(self):
     t = TEST.Test("Alle PTV skal i utgangspunktet være 'derived'", True, self.geometry)
+    if not self.ts_case:
+      return t.fail()
     # Run test if this structure set corresponds to the examination used for the treatment plan:
     if self.structure_set == self.ts_case.ts_plan.plan.GetStructureSet():
       for rg in self.structure_set.RoiGeometries:

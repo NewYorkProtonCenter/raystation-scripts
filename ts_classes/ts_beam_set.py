@@ -5,7 +5,6 @@
 # Verified for RayStation 6.0.
 
 # System configuration:
-from connect import *
 import math
 
 # GUI framework (debugging only):
@@ -13,7 +12,7 @@ import math
 #from System.Windows import *
 
 # Local script imports:
-from . from ts_classes import test as TEST
+from ts_classes import test as TEST
 from functions import raystation_utilities as RSU, structure_set_functions as SSF
 from settings import rois as ROIS, region_codes as RC
 
@@ -78,7 +77,7 @@ class TSBeamSet(object):
       return False
 
   # Gives the fraction dose (in Gy):
-  def fraction_dose(self):
+  def fraction_dose(self) -> float:
     return (self.beam_set.Prescription.PrimaryDosePrescription.DoseValue / 100.0) / self.beam_set.FractionationPattern.NumberOfFractions
 
     # Gives the ts_structure_set which corresponds with this beam set:
@@ -251,7 +250,7 @@ class TSBeamSet(object):
       target0 = None
       target1 = None
       for roi in ss.RoiGeometries:
-        if roi.OfRoi.Type == 'Ptv' and roi.PrimaryShape:
+        if roi.OfRoi.Type == 'Ptv' and roi.PrimaryShape and self.ts_plan:
           # Determine if this target volume is relevant for this beam set (by checking if it is used as an objective):
           po = RSU.plan_optimization(self.ts_plan.plan, self.beam_set)
           if po:
@@ -268,16 +267,18 @@ class TSBeamSet(object):
           for beam in self.beam_set.Beams:
             photon_iso = beam.Isocenter.Position
             diff = abs(photon_iso.z - target_center_z)
-      elif self.beam_set.DeliveryTechnique != 'Arc':
+      elif self.beam_set.DeliveryTechnique != 'Arc' and self.ts_label:
         if not self.ts_label.label.region in RC.conventional_and_vmat_site_codes:
           if self.beam_set.Modality == 'Photons':
             for beam in self.beam_set.Beams:
               photon_iso = beam.Isocenter.Position
-              for rg in self.ts_structure_set().structure_set.RoiGeometries:
-                if rg.OfRoi.Name == self.beam_set.Prescription.PrimaryDosePrescription.OnStructure.Name:
-                  target = rg.GetBoundingBox()
-                  target_center_z = target[0].z + 0.5*abs(target[0].z - target[1].z)
-                  diff = abs(photon_iso.z - target_center_z)
+              ts_structure_set = self.ts_structure_set()
+              if ts_structure_set:
+                for rg in ts_structure_set.structure_set.RoiGeometries:
+                  if rg.OfRoi.Name == self.beam_set.Prescription.PrimaryDosePrescription.OnStructure.Name:
+                    target = rg.GetBoundingBox()
+                    target_center_z = target[0].z + 0.5*abs(target[0].z - target[1].z)
+                    diff = abs(photon_iso.z - target_center_z)
       if diff:
         if diff > 1:
           return t.fail(round(diff, 2))
@@ -287,9 +288,9 @@ class TSBeamSet(object):
   # Tests if the plan has a target volume if the beam set label is U for 'Uten MV' and if the plan does not have a target volume and beam set label is M for 'Med MV'
   def label_target_volume_test(self):
     t = TEST.Test("Plan-teknikk og tilstedeværelse av målvolum bør stemme overens", True, self.label)
-    if self.ts_plan.ts_case.has_target_volume and self.ts_label.label.technique in ('U', 'u'):
+    if self.ts_plan and self.ts_plan.ts_case.has_target_volume and self.ts_label and self.ts_label.label.technique in ('U', 'u'):
       return t.fail()
-    elif not self.ts_plan.ts_case.has_target_volume and self.ts_label.label.technique in ('M', 'm'):
+    elif self.ts_plan and not self.ts_plan.ts_case.has_target_volume and self.ts_label and self.ts_label.label.technique in ('M', 'm'):
       return t.fail()
     else:
       return t.succeed()
@@ -297,7 +298,7 @@ class TSBeamSet(object):
   # Tests if the label usage of V for VMAT seems to make sense.
   def label_vmat_test(self):
     t = TEST.Test("Plan-teknikk for 'VMAT' og bruk av VMAT-teknikk skal stemme overens", False, self.label)
-    if not self.ts_label.label.technique in ('S', 's'):
+    if self.ts_label and not self.ts_label.label.technique in ('S', 's'):
       if self.is_vmat() and not self.ts_label.label.technique in ('V', 'v'):
         t.expected = 'V'
         return t.fail(self.ts_label.label.technique)
@@ -334,9 +335,12 @@ class TSBeamSet(object):
 
   # Tests correspondence of nr fractions in beam set with external value (from label).
   def nr_fractions_test(self):
+    t = TEST.Test("Antall fraksjoner i beam set skal stemme med antall fraksjoner i beam set label", None, self.energies)
+    if not self.ts_label:
+      return t.fail()
+    expected = self.ts_label.label.nr_fractions
+    t = TEST.Test("Antall fraksjoner i beam set skal stemme med antall fraksjoner i beam set label", expected, self.fractions)
     if self.ts_label.label.nr_fractions:
-      expected = self.ts_label.label.nr_fractions
-      t = TEST.Test("Antall fraksjoner i beam set skal stemme med antall fraksjoner i beam set label", expected, self.fractions)
       if self.beam_set.FractionationPattern.NumberOfFractions != int(expected):
         return t.fail(self.beam_set.FractionationPattern.NumberOfFractions)
       else:
@@ -361,9 +365,9 @@ class TSBeamSet(object):
       for beam in self.beam_set.Beams:
         energies.append(beam.MachineReference.Energy)
       # Define treatment as curative if fraction dose is less than 2.5 Gy (FIXME: This is of course extremely naive!!):
-      if self.fraction_dose < 2.5:
+      if self.fraction_dose() < 2.5:
         if 15 in energies:
-          return t.fail(15)
+          return t.fail()
         else:
           return t.succeed()
 
@@ -372,10 +376,9 @@ class TSBeamSet(object):
   def prescription_mu_breast_regional_caudal_test(self):
     t = TEST.Test("Skal stå i forhold til fraksjonsdosen for beam-settet, det ser ut som MU kaudalt for isosenter avviker med mer enn 20% av fraksjonsdosen (cGy).", True, self.mu)
     mu_total_over = 0
-    text = ""
     t.expected = RSU.fraction_dose(self.beam_set) * 100
     if self.beam_set.DeliveryTechnique != 'Arc':
-      if self.ts_label.label.region in RC.breast_reg_codes:
+      if self.ts_label and self.ts_label.label.region in RC.breast_reg_codes:
         for beam in self.beam_set.Beams:
           segment_partial_area = []
           for index, segment in enumerate(beam.Segments):
@@ -402,7 +405,7 @@ class TSBeamSet(object):
             if segment_partial_area[index] > 1.5 and segment_partial_area[index]/max_area > 0.2 or round(jaw[3],1) <=0:
               mu_total_over += beam.BeamMU*segment.RelativeWeight
         if abs((mu_total_over - RSU.fraction_dose(self.beam_set) * 100) / (RSU.fraction_dose(self.beam_set) * 100) * 100) > 20:
-          return t.fail(round(mu_total_over,1))
+          return t.fail()
         else:
           return t.succeed()
 
@@ -414,7 +417,7 @@ class TSBeamSet(object):
     text = ""
     t.expected = RSU.fraction_dose(self.beam_set) * 100
     if self.beam_set.DeliveryTechnique != 'Arc':
-      if self.ts_label.label.region in RC.breast_reg_codes:
+      if self.ts_label and self.ts_label.label.region in RC.breast_reg_codes:
         for beam in self.beam_set.Beams:
           segment_partial_area = []
           for index, segment in enumerate(beam.Segments):
@@ -441,7 +444,7 @@ class TSBeamSet(object):
               mu_total_over += beam.BeamMU*segment.RelativeWeight
 
         if abs((mu_total_over - RSU.fraction_dose(self.beam_set) * 100) / (RSU.fraction_dose(self.beam_set) * 100) * 100) > 20:
-          return t.fail(round(mu_total_over,1))
+          return t.fail()
         else:
           return t.succeed()
 
@@ -453,13 +456,13 @@ class TSBeamSet(object):
     for beam in self.beam_set.Beams:
       mu_total += beam.BeamMU
     if self.beam_set.DeliveryTechnique != 'Arc':
-      if not self.ts_label.label.region in RC.breast_reg_codes:
+      if self.ts_label and not self.ts_label.label.region in RC.breast_reg_codes:
         # Naive approximation only relevant for conventional plans (not VMAT):
         # Sum of monitor units compared to fraction dose (+/- 15% of 100Mu/Gy):
         percent_dev = (mu_total - RSU.fraction_dose(self.beam_set) * 100) / (RSU.fraction_dose(self.beam_set) * 100) * 100
         t.expected = RSU.fraction_dose(self.beam_set) * 100
         if abs(percent_dev) > 15:
-          return t.fail(round(mu_total, 1))
+          return t.fail()
         else:
           return t.succeed()
 
@@ -495,7 +498,7 @@ class TSBeamSet(object):
   # Tests if the energies of the beams in the beam set are the same as the expected energy.
   def specific_energy_for_region_test(self):
     wanted_energy = 6 # (default)
-    if self.ts_label.label.region in RC.brain_whole_codes:
+    if self.ts_label and self.ts_label.label.region in RC.brain_whole_codes:
       if self.beam_set.DeliveryTechnique != 'Arc':
         wanted_energy = 10
     t = TEST.Test("Det skal i utgangspunktet benyttes gitt energi for denne behandlingsregionen.", wanted_energy, self.energies)
@@ -503,7 +506,7 @@ class TSBeamSet(object):
     for beam in self.beam_set.Beams:
       energies.append(beam.MachineReference.Energy)
     if set(energies) != set([wanted_energy]):
-      return t.fail(energies)
+      return t.fail()
     else:
       return t.succeed()
 
@@ -513,12 +516,12 @@ class TSBeamSet(object):
     mu_total = 0
     if self.has_prescription():
       t.expected = "<" + str(RSU.fraction_dose(self.beam_set) * 140)
-      if self.ts_label.label.technique:
+      if self.ts_label and self.ts_label.label.technique:
         if self.ts_label.label.technique.upper() == 'S':
           for beam in self.beam_set.Beams:
             mu_total += beam.BeamMU
           if mu_total > RSU.fraction_dose(self.beam_set) * 140:
-            return t.fail(round(mu_total, 1))
+            return t.fail()
           else:
             return t.succeed()
 
@@ -585,7 +588,7 @@ class TSBeamSet(object):
         for beam in self.beam_set.Beams:
           mu_total += beam.BeamMU
         if mu_total > RSU.fraction_dose(self.beam_set) * 250:
-          return t.fail(round(mu_total, 1))
+          return t.fail()
         else:
           return t.succeed()
 
@@ -596,12 +599,13 @@ class TSBeamSet(object):
     t_56 = TEST.Test("Skal stemme overens (innenfor 0.5%) med aktuell dose for normeringsvolum " + ROIS.ctv_56.name + ".", True, self.norm_dose)
     t_56.expected = 56
     t_70.expected = 70
+
+    if not self.ts_plan or not self.ts_label:
+      return t_70.fail()
+
     for structure_set in self.ts_plan.ts_case.case.PatientModel.StructureSets:
       if self.ts_label.label.region in RC.prostate_codes:
         if self.ts_label.label.nr_fractions == '35':
-          match = False
-          cum_pr_dose = RSU.prescription_dose(self.beam_set)
-          diff_pr_dose = RSU.differential_prescription_dose(self.ts_plan.plan, self.beam_set)
           low_dose_70 = 70 * 0.995
           high_dose_70 = 70 * 1.005
           low_dose_56 = 56 * 0.995
@@ -625,12 +629,11 @@ class TSBeamSet(object):
  #Tests for recti SIB plans, if the 'CTV 0-47' volume is normalised to the correct value, within 0.5%.
   def recti_normalisation_test(self):
     t_47 = TEST.Test("Skal stemme overens (innenfor 0.5%) med aktuell dose for normeringsvolumet " + ROIS.ctv_47.name +".", True, self.norm_dose)
+    if not self.ts_plan or not self.ts_label:
+      return t_47.fail()
     for structure_set in self.ts_plan.ts_case.case.PatientModel.StructureSets:
       if self.ts_label.label.region not in RC.rectum_codes:
         if self.ts_label.label.nr_fractions == '25':
-          match = False
-          cum_pr_dose = RSU.prescription_dose(self.beam_set)
-          diff_pr_dose = RSU.differential_prescription_dose(self.ts_plan.plan, self.beam_set)
           low_dose_47 = round(47 * 0.995, 2)
           high_dose_47 = round(47 * 1.005, 2)
           for rg in structure_set.RoiGeometries:
@@ -645,12 +648,11 @@ class TSBeamSet(object):
  #Tests for breast SIB plans, if the 'CTV 0-47' volume is normalised to the correct value, within 0.5%.
   def breast_normalisation_test(self):
     t_47 = TEST.Test("Skal stemme overens (innenfor 0.5%) med aktuell dose for normeringsvolumet " + ROIS.ctv_47.name +".", True, self.norm_dose)
+    if not self.ts_plan or not self.ts_label:
+      return t_47.fail()
     for structure_set in self.ts_plan.ts_case.case.PatientModel.StructureSets:
       if self.ts_label.label.region in RC.breast_reg_codes:
         if self.ts_label.label.nr_fractions == '25':
-          match = False
-          cum_pr_dose = RSU.prescription_dose(self.beam_set)
-          diff_pr_dose = RSU.differential_prescription_dose(self.ts_plan.plan, self.beam_set)
           low_dose_47 = round(47 * 0.995, 2)
           high_dose_47 = round(47 * 1.005, 2)
           for rg in structure_set.RoiGeometries:

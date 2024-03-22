@@ -4,10 +4,6 @@
 #
 # Verified for RayStation 6.0.
 
-# System configuration:
-from connect import *
-#sys.path.append("I:\\HSM - Kreftavdelingen - gammelt fellesområde\\Program\\Skript\\RayStation\\lib".decode('utf8'))
-
 # GUI framework (debugging only):
 #clr.AddReference("PresentationFramework")
 #from System.Windows import *
@@ -42,6 +38,9 @@ class TSPlan(object):
     failed_geometries = []
     t = TEST.Test("Regionen må ha definert volum:", True, self.defined_roi)
     t.expected = None
+
+    if not self.ts_case:
+      return t.fail()
 
     for rg in self.ts_beam_sets[0].ts_structure_set().structure_set.RoiGeometries:
       if rg.HasContours() == False:

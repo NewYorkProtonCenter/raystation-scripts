@@ -4,10 +4,6 @@
 #
 # Verified for RayStation 6.0.
 
-# System configuration:
-from connect import *
-#sys.path.append("I:\\HSM - Kreftavdelingen - gammelt fellesområde\\Program\\Skript\\RayStation\\lib".decode('utf8'))
-
 # GUI framework (debugging only):
 #clr.AddReference("PresentationFramework")
 #from System.Windows import *
@@ -57,18 +53,22 @@ class TSBeam(object):
   # Tests that for arcs that a gantry spacing of 4 is used.
   def arc_gantry_spacing_test(self):
     t = TEST.Test("Skal normalt være 4", 4, self.gantry_spacing)
+    if not self.ts_beam_set:
+      return t.fail()
     if self.is_vmat():
       # VMAT optimization settings:
       beam_s = RSU.beam_settings(self.ts_beam_set.ts_plan.plan, self.ts_beam_set.beam_set, self.beam)
       if beam_s:
         if beam_s.ArcConversionPropertiesPerBeam.FinalArcGantrySpacing != 4:
-          return t.fail(bs.ArcConversionPropertiesPerBeam.FinalArcGantrySpacing)
+          return t.fail()
         else:
           return t.succeed()
 
   # Tests if the field is asymmetric, i.e. ifthe maximum jaw opening is more than 7.5 cm for Y1 and Y2 jaws for an VMAT arc, for filter free energies,
   def asymmetric_jaw_opening_for_filter_free_energies(self):
     t = TEST.Test("Maksimal avstand fra isosenter til feltgrense ved bruk av filter fri energi bør være < 7.5 cm  ", '<7.5 cm', self.collimator)
+    if not self.ts_beam_set:
+      return t.fail()
     # Perform the test only for VMAT beams:
     if self.is_vmat():
       if self.ts_beam_set.beam_set.MachineReference.MachineName == 'ALVersa_FFF':
@@ -204,6 +204,8 @@ class TSBeam(object):
   # Tests if the number of MU per beam is evenly distributed among the beams
   def stereotactic_beam_distribution_mu_test(self):
     t = TEST.Test("Antall MU bør være jevnt fordelt per bue (buelengde tatt i betraktning). MU på denne buen er > 1.15 * forventningsverdien.", True, self.mu)
+    if not self.ts_beam_set:
+      return t.fail()
     beam_start = 0
     beam_stop = 0
     beam_length = 0
@@ -243,6 +245,8 @@ class TSBeam(object):
   # Tests if a constraint is set for the maximum number of MU per beam, and if it is lower than 1.4 times the fraction dose
   def stereotactic_mu_constraints_for_single_beam(self):
     t = TEST.Test("Skal i utgangspunktet bruke begrensninger på antall MU per bue <= 1.4*fraksjonsdose (cGy).", True, self.mu)
+    if not self.ts_beam_set:
+      return t.fail()
     beam_start = 0
     beam_stop = 0
     beam_length = 0
@@ -263,6 +267,8 @@ class TSBeam(object):
   # Tests if a constraint is set for the maximum number of MU per beam, and if it is lower than 1.4 times the fraction dose
   def stereotactic_mu_constraints_for_multiple_beams(self):
     t = TEST.Test("Skal i utgangspunktet bruke begrensninger på antall MU per bue <= 1.4*fraksjonsdose (cGy), disse bør også ta hensyn til buelengden. Begrensningen på MU for denne buen er > 1.15 * forventningsverdien.", True, self.mu)
+    if not self.ts_beam_set:
+      return t.fail()
     beam_start = 0
     beam_stop = 0
     beam_length = 0
@@ -306,6 +312,8 @@ class TSBeam(object):
   # The "limit" towards the electronics is 15 cm away from the gantry from the isocenter.
   def wide_jaw_opening_which_can_hit_vmat_qa_detector_electronics_test(self):
     t = TEST.Test("Høy kollimator-åpning detektert. Avhengig av kollimatorvinkel og kollimatoråpning, kan man i slik situasjoner risikere å bestråle elektronikken på ArcCheck-detektoren, som bør unngås. Ved asymmetrisk isosenter, bør isosenter vurderes flyttet for å unngå dette.", '<14.3 cm', self.collimator)
+    if not self.ts_beam_set:
+      return t.fail()
     # Perform the test only for VMAT beams:
     if self.ts_beam_set.ts_plan.ts_case.case.Examinations[0].PatientPosition == 'HFS':
       if self.is_vmat():
@@ -327,6 +335,8 @@ class TSBeam(object):
   # Tests if the maximal jaw opening is less than 15 cm for filter free energies.
   def wide_jaw_opening_for_filter_free_energies(self):
     t = TEST.Test("Høy kollimatoråpning detektert, det bør vurderes om filter-energi bør brukes. Maksimal feltstørrelse ved bruk av filter fri energi er 15 cm  ", '<15 cm', self.collimator)
+    if not self.ts_beam_set:
+      return t.fail()
     # Perform the test only for VMAT beams:
     if self.is_vmat():
       if self.ts_beam_set.beam_set.MachineReference.MachineName == 'ALVersa_FFF':

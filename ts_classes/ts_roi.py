@@ -4,17 +4,12 @@
 #
 # Verified for RayStation 6.0.
 
-# System configuration:
-from connect import *
-#sys.path.append("I:\\HSM - Kreftavdelingen - gammelt fellesområde\\Program\\Skript\\RayStation\\lib".decode('utf8'))
-
 # GUI framework (debugging only):
 #clr.AddReference("PresentationFramework")
 #from System.Windows import *
 
 # Local script imports:
 from ts_classes import test as TEST
-from settings import raystation_utilities as RSU
 
 # This class contains tests for the RayStation ROI object:
 class TSROI(object):

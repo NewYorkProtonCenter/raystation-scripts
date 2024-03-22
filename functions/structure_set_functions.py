@@ -6,11 +6,7 @@ from __future__ import division
 import math
 
 # Import system libraries:
-from connect import *
-import clr, sys, re
-clr.AddReference("System.Windows.Forms")
-clr.AddReference("System.Drawing")
-clr.AddReference("PresentationFramework")
+import sys, re
 # Import local files:
 from settings import rois as ROIS, margins as MARGINS, region_codes as RC
 from rt_classes import roi as ROI, margin as MARGIN
@@ -130,6 +126,7 @@ def create_roi_subtraction(pm, examination, ss, roi1, roi2, subtraction_name, th
 def determine_isocenter(examination, ss, region_code, technique_name, target, external, multiple_targets=False):
   # Determine the point which will be our isocenter:
   iso = False
+  isocenter = None
   for p in ss.PoiGeometries:
     if p.OfPoi.Name in ['Iso', 'ISO']:
       name = p.OfPoi.Name
@@ -162,7 +159,6 @@ def determine_isocenter(examination, ss, region_code, technique_name, target, ex
         else:
           isocenter = find_isocenter_conv_reg_breast(ss, region_code, ROIS.ctv_47_50.name, level)
     else:
-      # In all other cases
       isocenter = find_isocenter(examination, ss, target, external, multiple_targets=multiple_targets)
   return isocenter
 
@@ -295,7 +291,7 @@ def determine_target(ss, nr_fractions, fraction_dose):
     return target
   else:
     #raise IOError("Mislyktes i å opprette 'Prescription', årsaken er at ROIen mangler eller at navnet ikke er som forventet.")
-    print('target is missing')
+    print('target is missing (determine_target)')
 
     # GUIF.handle_missing_target()
 
@@ -315,7 +311,7 @@ def find_CTVs(ss):
              or (roi.OfRoi.Type == 'Ptv' and re.search(r'eval', roi.OfRoi.Name, re.IGNORECASE)):
           target.append(roi.OfRoi.Name)
   if len(target) == 0:
-    print('target is missing')
+    print('target is missing (find_CTVs)')
 
   return target
   # GUIF.handle_missing_target()
@@ -431,8 +427,9 @@ def find_IGRT_Surface(ss):
 # Determines the isocenter based on the CTV, and if it does not exist, the PTV, and External contour, (or the Body contour) provided for the given structure set.
 def find_isocenter(examination, ss, target, external, multiple_targets=False):
   # Find center of target:
-  if has_named_roi_with_contours(ss, target):
-    center = ss.RoiGeometries[target].GetCenterOfRoi()
+  if not has_named_roi_with_contours(ss, target):
+    return
+  center = ss.RoiGeometries[target].GetCenterOfRoi()
   # Determine x and y coordinate:
   patient_center_y = roi_center_y(ss, external)
   patient_center_x = roi_center_x(ss, external)

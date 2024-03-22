@@ -5,7 +5,7 @@
 # Verified for RayStation 6.0.
 
 # System configuration:
-from connect import *
+from connect import ss_poi_geometry  # type: ignore
 #sys.path.append("I:\\HSM - Kreftavdelingen - gammelt fellesområde\\Program\\Skript\\RayStation\\lib".decode('utf8'))
 
 # GUI framework (debugging only):
@@ -13,6 +13,7 @@ from connect import *
 #from System.Windows import *
 
 # Local script imports:
+from typing import Any
 from ts_classes import test as TEST
 from functions import raystation_utilities as RSU, structure_set_functions as SSF
 from settings import rois as ROIS
@@ -41,10 +42,12 @@ class TSPrescription(object):
   def clinical_max_test(self):
     t = TEST.Test("Skal i utgangspunktet være mindre enn 105% av normeringsdosen", True, self.maks)
     ts = TEST.Test("Skal i utgangspunktet være mindre enn 150% av normeringsdosen", True, self.maks)
+    if not self.ts_beam_set:
+      return t.fail()
     diff_pr_dose = RSU.differential_prescription_dose(self.ts_beam_set.ts_plan.plan, self.ts_beam_set.beam_set)
     ss = self.ts_beam_set.ts_structure_set().structure_set
     if SSF.has_named_roi_with_contours(ss, ROIS.external.name):
-      external = RSU.ss_roi_geometry(self.ts_beam_set.beam_set, self.ts_beam_set.ts_plan.ts_case.case.PatientModel.RegionsOfInterest[ROIS.external.name])
+      external: Any = RSU.ss_roi_geometry(self.ts_beam_set.beam_set, self.ts_beam_set.ts_plan.ts_case.case.PatientModel.RegionsOfInterest[ROIS.external.name])
       volume = external.GetRoiVolume()
       # Determine the fraction corresponding to a 2cc volume:
       fraction = 2 / volume
@@ -68,6 +71,8 @@ class TSPrescription(object):
   def ctv_prescription_test(self):
     t = TEST.Test("Skal i utgangspunktet benytte CTV til normalisering.", True, self.roi)
     ts = TEST.Test("Skal i utgangspunktet benytte PTV til normalisering.", True, self.roi)
+    if not self.ts_beam_set:
+      return t.fail()
     if self.ts_beam_set.ts_label.label.technique:
       if self.ts_beam_set.ts_label.label.technique.upper() == 'S':
         if self.prescription.PrimaryDosePrescription.OnStructure.Type == 'Ptv':
@@ -90,6 +95,8 @@ class TSPrescription(object):
 
   def prescription_poi_technique_test(self):
     t = TEST.Test("Punktnormering skal bare benyttes i kombinasjon med plan-type 'U'", False, self.type)
+    if not self.ts_beam_set:
+      return t.fail()
     if self.prescription.PrimaryDosePrescription.PrescriptionType == 'DoseAtPoint':
       if self.ts_beam_set.ts_label.label.technique:
         if self.ts_beam_set.ts_label.label.technique.upper() == 'U':
@@ -100,6 +107,8 @@ class TSPrescription(object):
   # FIXME: Bruk struktursett tilhørende aktuell plan istedenfor case.
   def prescription_poi_target_volume_test(self):
     t = TEST.Test("Punktnormering skal kun benyttes for planer som ikke har målvolum definert", False, self.type)
+    if not self.ts_beam_set:
+      return t.fail()
     if self.prescription.PrimaryDosePrescription.PrescriptionType == 'DoseAtPoint':
       if self.ts_beam_set.ts_plan.ts_case.has_target_volume:
         return t.fail(True)
@@ -108,6 +117,8 @@ class TSPrescription(object):
 
   def prescription_dose_test(self):
     t = TEST.Test("Skal stemme overens med totaldose indikert av beam set label.", True, self.dose)
+    if not self.ts_beam_set:
+      return t.fail()
     cum_pr_dose = RSU.prescription_dose(self.ts_beam_set.beam_set)
     diff_pr_dose = RSU.differential_prescription_dose(self.ts_beam_set.ts_plan.plan, self.ts_beam_set.beam_set)
     if self.ts_beam_set.ts_label.label.valid:
@@ -120,6 +131,8 @@ class TSPrescription(object):
 
   def prescription_real_dose_test(self):
     t = TEST.Test("Skal stemme overens (innenfor 0.5%) med aktuell dose for nomeringsvolum (eller punkt)", True, self.dose)
+    if not self.ts_beam_set:
+      return t.fail()
     if self.ts_beam_set.beam_set.Modality == 'Photons':
       cum_pr_dose = RSU.prescription_dose(self.ts_beam_set.beam_set)
       diff_pr_dose = RSU.differential_prescription_dose(self.ts_beam_set.ts_plan.plan, self.ts_beam_set.beam_set)
@@ -149,6 +162,8 @@ class TSPrescription(object):
 
   def stereotactic_prescription_technique_test(self):
     t = TEST.Test("Ved stereotaksi skal prescription være: DoseAtVolume 99 %. Planteknikk skal være S.", True, self.type)
+    if not self.ts_beam_set:
+      return t.fail()
     if self.prescription.PrimaryDosePrescription.PrescriptionType == 'DoseAtVolume' and self.prescription.PrimaryDosePrescription.DoseVolume == 99 and self.ts_beam_set.beam_set.DeliveryTechnique == 'Arc':
       if self.ts_beam_set.ts_label.label.technique:
         if self.ts_beam_set.ts_label.label.technique.upper() == 'S':
@@ -156,7 +171,7 @@ class TSPrescription(object):
         else:
           return t.fail()
       else:
-        return t.fail(self.prescription.PrimaryDosePrescription.PrescriptionType)
+        return t.fail()
 
 
 

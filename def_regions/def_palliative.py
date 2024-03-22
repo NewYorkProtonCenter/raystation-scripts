@@ -56,7 +56,7 @@ class DefPalliative(object):
           site.add_targets([ROIS.gtv, ROIS.ctv_ext])
         else:
           site.add_targets([ROIS.ctv_underived])
-          ROIS.ptv_ext.source = ROIS.ctv_underived
+          ROIS.ptv_ext.sourcesA = ROIS.ctv_underived
         site.add_targets([ROIS.ptv_ext])
       # 2 targets:
       else:

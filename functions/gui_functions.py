@@ -1,12 +1,11 @@
 # encoding: utf8
 
 # Import system libraries:
-from connect import *
 import clr, sys
-clr.AddReference("System.Windows.Forms")
-clr.AddReference("PresentationFramework")
-from System.Windows import MessageBox, MessageBoxImage, MessageBoxButton
-from System.Windows.Forms import DialogResult
+clr.AddReference("System.Windows.Forms")  # type: ignore
+clr.AddReference("PresentationFramework")  # type: ignore
+from System.Windows import MessageBox, MessageBoxImage, MessageBoxButton  # type: ignore
+from System.Windows.Forms import DialogResult  # type: ignore
 
 # Import local files:
 from settings import plan_choices as PC, region_codes as RC, rois as ROIS

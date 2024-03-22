@@ -150,7 +150,7 @@ case = get_current('Case')
 
 pid = patient.PatientID
 
-logger.info(' ID = ' + pid + ' Name = ' + patient.Name + 'Case = ' + case.CaseName)
+logger.info('ID = ' + pid + ' Name = ' + patient.Name + ', Case = ' + case.CaseName)
 
 try:
     current_plan_name = get_current('Plan').Name

@@ -49,6 +49,8 @@ class DefBreast(object):
       # Choice 4: With our without boost?
       boost = choices[4].value
       site.add_oars(DEF.breast_reg_oars)
+      if region == 'imn':
+        site.add_oars([ROIS.imn])
       # Hypofractionated
       if frac == 'hypo':
         if side == 'right':
@@ -64,6 +66,10 @@ class DefBreast(object):
         ptv_p = ROI.ROIAlgebra(ROIS.ptv_pc.name, ROIS.ptv_pc.type, ROIS.ptv.color, sourcesA = [ctv_p], sourcesB = [ROIS.external], operator = 'Intersection', marginsA = MARGINS.uniform_5mm_expansion, marginsB = MARGINS.uniform_5mm_contraction)
         ptv_n = ROI.ROIAlgebra(ROIS.ptv_nc.name, ROIS.ptv_nc.type, ROIS.ptv.color, sourcesA = [ctv_n], sourcesB = [ROIS.external], operator = 'Intersection', marginsA = MARGINS.uniform_5mm_expansion, marginsB = MARGINS.uniform_5mm_contraction)
         ptv = ROI.ROIAlgebra(ROIS.ptv_c.name, ROIS.ptv.type, ROIS.ptv.color, sourcesA = [ptv_n], sourcesB = [ptv_p], operator = 'Union', marginsA = MARGINS.zero, marginsB = MARGINS.zero)
+
+        if region == 'imn':
+          ctv_n.sourcesA.extend([ROIS.imn])
+        site.add_targets([ctv_p, ctv_n, ctv, ptv_p, ptv_n, ptv])
       else:
         if side == 'right':
           ctv_50 = ROI.ROIAlgebra(ROIS.ctv_50.name, ROIS.ctv_50.type, ROIS.ctv.color, sourcesA = [ROIS.breast_r_draft], sourcesB = [ROIS.external], operator = 'Intersection', marginsA = MARGINS.zero, marginsB = MARGINS.uniform_5mm_contraction)
@@ -79,17 +85,9 @@ class DefBreast(object):
         ptv_47 = ROI.ROIAlgebra(ROIS.ptv_47.name, ROIS.ptv_47.type, ROIS.ptv.color, sourcesA = [ctv_47], sourcesB = [ptv_50c], operator = 'Subtraction', marginsA = MARGINS.uniform_5mm_expansion, marginsB = MARGINS.zero)
         ptv_47c = ROI.ROIAlgebra(ROIS.ptv_47c.name, ROIS.ptv_47.type, ROIS.ptv.color, sourcesA = [ptv_47], sourcesB = [ROIS.external], operator = 'Intersection', marginsA = MARGINS.zero, marginsB = MARGINS.uniform_5mm_contraction)
         ptv = ROI.ROIAlgebra(ROIS.ptv_c.name, ROIS.ptv.type, ROIS.ptv.color, sourcesA = [ptv_47c], sourcesB = [ptv_50c], operator = 'Union', marginsA = MARGINS.zero, marginsB = MARGINS.zero)
-        # Only if IMN is included in target volume:
-      if region == 'imn':
-        site.add_oars([ROIS.imn])
-        if frac == 'hypo':
-          ctv_n.sourcesA.extend([ROIS.imn])
-        else:
+
+        if region == 'imn':
           ctv_47.sourcesA.extend([ROIS.imn])
-      # Common for all regional:
-      if frac == 'hypo':
-        site.add_targets([ctv_p, ctv_n, ctv, ptv_p, ptv_n, ptv])
-      else:
         site.add_targets([ctv_50, ctv_47, ctv_47_50, ptv_50c, ptv_47, ptv_47c, ptv])
     # Add volumes for boost (2Gy x 8) if selected:
     if not region == 'part':

@@ -5,7 +5,7 @@
 # Verified for RayStation 6.0.
 
 # System configuration:
-from connect import *
+from connect import get_current  # type: ignore
 #sys.path.append("I:\\HSM - Kreftavdelingen - gammelt fellesområde\\Program\\Skript\\RayStation\\lib".decode('utf8'))
 
 # GUI framework (debugging only):
@@ -75,6 +75,8 @@ class TSCase(object):
   # Tests if the same localization point is set in the free breathing CT and DIBH CT.
   def localization_points_for_gating_test(self):
     t = TEST.Test("Skal være samme referansepunkt i både fripust CT og dyp innpust CT for planer som har gating-regionkode", True, self.localization_point)
+    if not self.ts_plan:
+      return t.fail()
     points = []
     if self.ts_plan.ts_beam_sets[0].ts_label.label.region and self.ts_plan.ts_beam_sets[0].ts_label.label.region in RC.breast_l_codes:
       for ts_structure_set in self.ts_structure_sets:

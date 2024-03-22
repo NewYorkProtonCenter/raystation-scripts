@@ -4,10 +4,6 @@
 #
 # Verified for RayStation 6.0.
 
-# System configuration:
-from connect import *
-
-
 # GUI framework (debugging only):
 #clr.AddReference("PresentationFramework")
 #from System.Windows import *
@@ -39,6 +35,8 @@ class TSOptimization(object):
   # Tests if Constrain leaf motion of 0.3 cm/deg is used for stereotactic plans.
   def constrain_leaf_motion_test(self):
     t = TEST.Test("Skal i utgangspunktet bruke Constrain leaf motion <= 0.3 cm/deg", True, self.parameter)
+    if not self.ts_beam_set:
+      return t.fail()
     match = True
     if self.ts_beam_set.ts_label.label.technique:
       if self.ts_beam_set.ts_label.label.technique.upper() == 'S':
@@ -70,6 +68,8 @@ class TSOptimization(object):
     t2 = TEST.Test("Skal i utgangspunktet bruke dosegrid: 0.2x0.2x0.2 cm^3.", True, self.grid)
     ts = TEST.Test("Skal i utgangspunktet bruke dosegrid: 0.1x0.1x0.1 cm^3 ved siste final dose.", True, self.grid)
     tsl = TEST.Test("Skal i utgangspunktet bruke dosegrid: 0.2x0.2x0.2 cm^3 ved siste final dose.", True, self.grid)
+    if not self.ts_beam_set:
+      return t.fail()
     grid = self.optimization.OptimizationParameters.TreatmentSetupSettings[0].ForTreatmentSetup.FractionDose.InDoseGrid.VoxelSize
     if self.ts_beam_set.ts_label.label.technique:
       if self.ts_beam_set.ts_label.label.technique.upper() == 'S':

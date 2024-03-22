@@ -1,13 +1,11 @@
 # encoding: utf8
 
 # Import system libraries:
-from connect import get_current
+from connect import get_current  # type: ignore
 import clr
 # import System.Array
 # clr.AddReference("Office")
 # clr.AddReference("Microsoft.Office.Interop.Excel")
-clr.AddReference("System.Windows.Forms")
-clr.AddReference("System.Drawing")
 # from Microsoft.Office.Interop.Excel import *
 
 # Import local files:

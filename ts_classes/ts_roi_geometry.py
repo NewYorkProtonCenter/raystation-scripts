@@ -4,10 +4,6 @@
 #
 # Verified for RayStation 6.0.
 
-# System configuration:
-from connect import *
-#sys.path.append("I:\\HSM - Kreftavdelingen - gammelt fellesområde\\Program\\Skript\\RayStation\\lib".decode('utf8'))
-
 # GUI framework (debugging only):
 #clr.AddReference("PresentationFramework")
 #from System.Windows import *
@@ -37,7 +33,7 @@ class TSROIGeometry(object):
 #Tests if all ROI's are defined
   def defined_volume_test(self):
     t = TEST.Test("Regionen må ha definert volum", True, self.defined_roi)
-    if self.ts_structure_set.structure_set == self.ts_structure_set.ts_case.ts_plan.plan.GetStructureSet():
+    if self.ts_structure_set and self.ts_structure_set.structure_set == self.ts_structure_set.ts_case.ts_plan.plan.GetStructureSet():
       if self.roi_geometry.HasContours():
         return t.succeed()
       else:
@@ -48,7 +44,7 @@ class TSROIGeometry(object):
 #Tests if a ROI is updated when it is derived
   def derived_roi_geometry_is_updated_test(self):
     t = TEST.Test("Regionen må være oppdatert når den er avledet", True, self.updated_roi)
-    if self.ts_structure_set.structure_set == self.ts_structure_set.ts_case.ts_plan.plan.GetStructureSet():
+    if self.ts_structure_set and self.ts_structure_set.structure_set == self.ts_structure_set.ts_case.ts_plan.plan.GetStructureSet():
       if self.roi_geometry.PrimaryShape:
         # Is the referenced ROI derived?
         if self.roi_geometry.OfRoi.DerivedRoiExpression:

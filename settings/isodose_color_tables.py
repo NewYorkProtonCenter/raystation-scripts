@@ -2,8 +2,8 @@
 
 # Import the System.Drawing namespace:
 import clr
-clr.AddReference('System.Drawing')
-import System.Drawing
+clr.AddReference('System.Drawing')  # type: ignore
+import System.Drawing  # type: ignore
 
 # Import local files:
 from settings import colors as COLORS
