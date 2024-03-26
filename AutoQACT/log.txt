@@ -1,0 +1,31 @@
+2024-03-21 11:28:27,106 - INFO - Start processing patients at 2024-03-21 11:28:27.106911
+2024-03-21 11:28:27,126 - INFO -  ID = 5718 Name = DEVANNY^JOSEPH^MCase = Case 1
+2024-03-21 11:28:27,146 - INFO - Case = Case 1, Plan Name = INITIAL_HQ, Exam Name = CT 1
+2024-03-21 11:28:30,834 - INFO - End processing patients at 2024-03-21 11:28:30.834938
+2024-03-21 11:49:07,017 - INFO - Start processing patients at 2024-03-21 11:49:07.017130
+2024-03-21 11:49:07,037 - INFO -  ID = 5718 Name = DEVANNY^JOSEPH^MCase = Case 1
+2024-03-21 11:49:07,057 - INFO - Case = Case 1, Plan Name = INITIAL_HQ, Exam Name = CT 1
+2024-03-21 11:49:10,635 - INFO - End processing patients at 2024-03-21 11:49:10.635155
+2024-03-22 15:08:21,117 - INFO - Start processing patients at 2024-03-22 15:08:21.117191
+2024-03-22 15:08:21,149 - INFO -  ID = 10878 Name = PAL^SURINDERCase = Case 1
+2024-03-22 15:08:21,177 - INFO - Case = Case 1, Plan Name = ARC, Exam Name = CT 1
+2024-03-22 15:08:26,086 - INFO - End processing patients at 2024-03-22 15:08:26.086229
+2024-03-22 15:12:15,706 - INFO - Start processing patients at 2024-03-22 15:12:15.706549
+2024-03-22 15:12:15,744 - INFO -  ID = 10878 Name = PAL^SURINDERCase = Case 1
+2024-03-22 15:12:15,793 - INFO - Case = Case 1, Plan Name = ARC, Exam Name = CT 1
+2024-03-22 15:12:19,987 - INFO - End processing patients at 2024-03-22 15:12:19.987579
+2024-03-22 15:16:08,898 - INFO - Start processing patients at 2024-03-22 15:16:08.898151
+2024-03-22 15:16:08,918 - INFO -  ID = 10878 Name = PAL^SURINDERCase = Case 1
+2024-03-22 15:16:08,970 - INFO - Case = Case 1, Plan Name = ARC, Exam Name = CT 1
+2024-03-22 15:17:25,536 - INFO - Start processing patients at 2024-03-22 15:17:25.536242
+2024-03-22 15:17:25,555 - INFO -  ID = 10878 Name = PAL^SURINDERCase = Case 1
+2024-03-22 15:17:25,582 - INFO - Case = Case 1, Plan Name = ARC, Exam Name = CT 1
+2024-03-22 15:18:00,366 - INFO - Start processing patients at 2024-03-22 15:18:00.366829
+2024-03-22 15:18:00,443 - INFO -  ID = 10878 Name = PAL^SURINDERCase = Case 1
+2024-03-22 15:18:00,465 - INFO - Case = Case 1, Plan Name = ARC, Exam Name = CT 1
+2024-03-22 15:20:55,614 - INFO - End processing patients at 2024-03-22 15:20:55.614253
+2024-03-22 15:53:28,666 - INFO - Start processing patients at 2024-03-22 15:53:28.666451
+2024-03-22 15:54:51,726 - INFO - Start processing patients at 2024-03-22 15:54:51.726277
+2024-03-22 15:54:51,749 - INFO -  ID = 10048 Name = VASWANI^SAJNI^HIROOCase = Case 4
+2024-03-22 15:54:51,776 - INFO - Case = Case 4, Plan Name = INITIALtest, Exam Name = CT 1
+2024-03-22 15:54:59,443 - INFO - End processing patients at 2024-03-22 15:54:59.443341

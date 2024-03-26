@@ -6,8 +6,6 @@
 from functions import patient_model_functions as PMF, structure_set_functions as SSF
 from logging import Logger
 from typing import Tuple
-from connect import *  # type: ignore
-import statetree  # type: ignore
 
 
 def find_TPCT_name(case, TPname: str, logger: Logger) -> Tuple[str, str]:
